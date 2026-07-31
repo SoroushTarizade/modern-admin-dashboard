@@ -1,3 +1,10 @@
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![React](https://img.shields.io/badge/React-19-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind](https://img.shields.io/badge/TailwindCSS-v4-38bdf8)
+![Status](https://img.shields.io/badge/Status-In%20Progress-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 # Modern Admin Dashboard
 
 A modern and clean Admin Dashboard built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**.
