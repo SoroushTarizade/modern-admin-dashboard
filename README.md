@@ -1,36 +1,201 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Admin Dashboard
 
-## Getting Started
+A modern and clean Admin Dashboard built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**.
 
-First, run the development server:
+This project focuses on building reusable components, scalable architecture, and a professional dashboard UI.
+
+> 🚧 This project is still under active development. New features and improvements will be added continuously.
+
+---
+
+# Preview
+
+## Dashboard (Light)
+
+![Dashboard Light](./assets/screenshots/HomePage-light.png)
+
+---
+
+## Dashboard (Dark)
+
+![Dashboard Dark](./assets/screenshots/HomePage-dark.png)
+
+---
+
+## Inbox (Light)
+
+![Inbox Light](./assets/screenshots/InboxPage-light.png)
+
+---
+
+## Inbox (Dark)
+
+![Inbox Dark](./assets/screenshots/InboxPage-dark.png)
+
+---
+
+## Register
+
+![Register](./assets/screenshots/RegisterPage.png)
+
+---
+
+## Sign In
+
+![Sign In](./assets/screenshots/signInPage.png)
+
+---
+
+## 404 Page
+
+![404](./assets/screenshots/Eror404.png)
+
+---
+
+# Features
+
+- Modern Admin Dashboard UI
+- Light & Dark Mode
+- Responsive Layout (In Progress)
+- Reusable Components
+- Sidebar Navigation
+- Dashboard Analytics
+- Charts
+- Calendar
+- Orders Management
+- Product Stock Page
+- Authentication Pages
+- Team Page
+- Inbox Page
+- Favorites
+- Invoice
+- Contact Page
+- Todo Page
+- Clean Folder Structure
+- TypeScript Support
+
+---
+
+# Tech Stack
+
+- Next.js 16
+- React 19
+- TypeScript
+- Tailwind CSS v4
+- Recharts
+- FullCalendar
+- Swiper
+- React Icons
+- Next Themes
+
+---
+
+# Folder Structure
+
+```
+app/
+components/
+hooks/
+data/
+types/
+public/
+assets/
+    screenshots/
+```
+
+---
+
+# Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/soroushtarizade/modern-admin-dashboard.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Run development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run production
 
-## Learn More
+```bash
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Project Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Current Version
 
-## Deploy on Vercel
+- UI Completed
+- Component Architecture
+- Dashboard Pages
+- Calendar
+- Orders
+- Product Stock
+- Authentication Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Currently Working On
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Responsive Design
+- Performance Optimization
+- Accessibility Improvements
+- Better Animations
+- Code Refactoring
+- More Dashboard Widgets
+- API Integration
+- Authentication
+- Database Integration
+
+---
+
+# Future Improvements
+
+- Complete Responsive Design
+- Real Backend Integration
+- Authentication System
+- Dashboard Statistics API
+- Search
+- Notifications
+- User Profile
+- Settings Page
+- Role Based Access
+- Unit Testing
+- Docker Support
+- Deployment
+
+---
+
+# Author
+
+**Soroush Tarizadeh**
+
+Frontend Developer
+
+GitHub
+
+https://github.com/SoroushTarizade
+
+LinkedIn
+
+https://www.linkedin.com/in/soroush-tarizadeh
+
+---
+
+If you like this project, don't forget to ⭐ the repository.
