@@ -1,0 +1,158 @@
+import { Mail } from "@/types/mail";
+
+export const mails: Mail[] = [
+    {
+        id: "1",
+        sender: "Soroush Tarizadeh",
+        email: "Soroushtarizadeh7139@gmail.com",
+        avatar: "/images/img-resume.jpg",
+        subject: "Meeting Tomorrow",
+        message:
+            "Hi, don't forget our meeting tomorrow at 10:00 AM. Please review the attached files before joining.",
+        date: "Jul 29",
+        time: "09:45 AM",
+        category: "Inbox",
+        label: "Work",
+        read: false,
+        starred: true,
+        selected: false,
+        attachment: true,
+    },
+
+    {
+        id: "2",
+        sender: "Emma Watson",
+        email: "emma@example.com",
+        avatar: "/images/women.jpeg",
+        subject: "Weekend Trip",
+        message:
+            "Let's plan our weekend trip together. I found some amazing places we should visit.",
+        date: "Jul 28",
+        time: "04:30 PM",
+        category: "Inbox",
+        label: "Friends",
+        read: true,
+        starred: false,
+        selected: false,
+    },
+
+    {
+        id: "3",
+        sender: "Facebook",
+        email: "facebook@mail.com",
+        avatar: "/images/facebook.png",
+        subject: "New Friend Suggestion",
+        message:
+            "You have new friend suggestions waiting for you.",
+        date: "Jul 27",
+        time: "11:00 AM",
+        category: "Inbox",
+        label: "Social",
+        read: false,
+        starred: false,
+        selected: false,
+    },
+
+    {
+        id: "4",
+        sender: "GitHub",
+        email: "noreply@github.com",
+        avatar: "/images/github-logo.png",
+        subject: "Pull Request Approved",
+        message:
+            "Congratulations! Your latest pull request has been approved.",
+        date: "Jul 26",
+        time: "01:20 PM",
+        category: "Inbox",
+        label: "Work",
+        read: true,
+        starred: true,
+        selected: false,
+    },
+
+    {
+        id: "5",
+        sender: "Netflix",
+        email: "support@netflix.com",
+        avatar: "/images/netflix.png",
+        subject: "Subscription Updated",
+        message:
+            "Your subscription has been renewed successfully.",
+        date: "Jul 25",
+        time: "08:15 PM",
+        category: "Inbox",
+        label: "Primary",
+        read: true,
+        starred: false,
+        selected: false,
+    },
+
+    {
+        id: "6",
+        sender: "John Smith",
+        email: "john@example.com",
+        avatar: "/images/img-resume.jpg",
+        subject: "Invoice",
+        message:
+            "Thank you for your purchase. Please find the invoice attached.",
+        date: "Jul 24",
+        time: "03:00 PM",
+        category: "Sent",
+        label: "Primary",
+        read: true,
+        starred: false,
+        selected: false,
+        attachment: true,
+    },
+
+    {
+        id: "7",
+        sender: "Me",
+        email: "me@example.com",
+        avatar: "/images/img-resume.jpg",
+        subject: "Draft Email",
+        message:
+            "This email is still being edited.",
+        date: "Jul 23",
+        time: "10:00 AM",
+        category: "Draft",
+        label: "Primary",
+        read: true,
+        starred: false,
+        selected: false,
+    },
+
+    {
+        id: "8",
+        sender: "Spam Sender",
+        email: "spam@example.com",
+        avatar: "/images/img-resume.jpg",
+        subject: "Win $10000 Today",
+        message:
+            "Click here immediately to claim your reward.",
+        date: "Jul 22",
+        time: "08:00 AM",
+        category: "Spam",
+        label: "Primary",
+        read: false,
+        starred: false,
+        selected: false,
+    },
+
+    {
+        id: "9",
+        sender: "Old Contact",
+        email: "old@example.com",
+        avatar: "/images/img-resume.jpg",
+        subject: "Deleted Mail",
+        message:
+            "This mail is currently inside the recycle bin.",
+        date: "Jul 20",
+        time: "09:00 PM",
+        category: "Bin",
+        label: "Primary",
+        read: true,
+        starred: false,
+        selected: false,
+    },
+];

@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+   /* =========================
+     Base
+  ========================= */
+   --background: #f5f6fa;
+   --foreground: #202224;
+
+   /* =========================
+     Surface
+  ========================= */
+   --card: #ffffff;
+   --card-foreground: #202224;
+
+   --popover: #ffffff;
+   --popover-foreground: #202224;
+
+   /* =========================
+     Brand
+  ========================= */
+   --primary: #4880ff;
+   --primary-foreground: #ffffff;
+
+   --secondary: #edf2ff;
+   --secondary-foreground: #202224;
+
+   /* =========================
+     Text
+  ========================= */
+   --muted: #eef1f7;
+   --muted-foreground: #7a7d84;
+
+   /* =========================
+     Border & Input
+  ========================= */
+   --border: #e6eaf2;
+   --input: #f8f9fc;
+   --ring: #4880ff;
+
+   /* =========================
+     Status
+  ========================= */
+   --success: #00b69b;
+   --warning: #ffb648;
+   --destructive: #f93c65;
+   --info: #4880ff;
+
+   /* =========================
+     Sidebar
+  ========================= */
+   --sidebar: #ffffff;
+   --sidebar-foreground: #202224;
+   --sidebar-hover: #4880ff;
+   --sidebar-hover-foreground: #ffffff;
+
+   /* =========================
+     Charts
+  ========================= */
+   --chart-1: #4880ff;
+   --chart-2: #00b69b;
+   --chart-3: #ffb648;
+   --chart-4: #f93c65;
+   --chart-5: #8280ff;
+
+   /* =========================
+     Radius
+  ========================= */
+   --radius: 16px;
+}
+
+.dark {
+   /* =========================
+     Base
+  ========================= */
+   --background: #1b2431;
+   --foreground: #ffffff;
+
+   /* =========================
+     Surface
+  ========================= */
+   --card: #273142;
+   --card-foreground: #ffffff;
+
+   --popover: #273142;
+   --popover-foreground: #ffffff;
+
+   /* =========================
+     Brand
+  ========================= */
+   --primary: #4880ff;
+   --primary-foreground: #ffffff;
+
+   --secondary: #313d4f;
+   --secondary-foreground: #ffffff;
+
+   /* =========================
+     Text
+  ========================= */
+   --muted: #313d4f;
+   --muted-foreground: #aeb4c2;
+
+   /* =========================
+     Border & Input
+  ========================= */
+   --border: #3b4658;
+   --input: #313d4f;
+   --ring: #4880ff;
+
+   /* =========================
+     Status
+  ========================= */
+   --success: #00b69b;
+   --warning: #ffb648;
+   --destructive: #f93c65;
+   --info: #4880ff;
+
+   /* =========================
+     Sidebar
+  ========================= */
+   --sidebar: #273142;
+   --sidebar-foreground: #ffffff;
+   --sidebar-hover: #4880ff;
+   --sidebar-hover-foreground: #ffffff;
+
+   /* =========================
+     Charts
+  ========================= */
+   --chart-1: #4880ff;
+   --chart-2: #00b69b;
+   --chart-3: #ffb648;
+   --chart-4: #f93c65;
+   --chart-5: #8280ff;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+   /* Colors */
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+   --color-card: var(--card);
+   --color-card-foreground: var(--card-foreground);
+
+   --color-popover: var(--popover);
+   --color-popover-foreground: var(--popover-foreground);
+
+   --color-primary: var(--primary);
+   --color-primary-foreground: var(--primary-foreground);
+
+   --color-secondary: var(--secondary);
+   --color-secondary-foreground: var(--secondary-foreground);
+
+   --color-muted: var(--muted);
+   --color-muted-foreground: var(--muted-foreground);
+
+   --color-border: var(--border);
+   --color-input: var(--input);
+   --color-ring: var(--ring);
+
+   --color-success: var(--success);
+   --color-warning: var(--warning);
+   --color-destructive: var(--destructive);
+   --color-info: var(--info);
+
+   --font-sans: var(--font-nunito);
+
+   --radius: var(--radius);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+   background: var(--background);
+   color: var(--foreground);
+   font-family: var(--font-sans);
+}
+
+html,
+body {
+   min-height: 100%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+   background: transparent;
+   box-shadow: none;
+   width: 48px;
+   height: 48px;
+   color: white;
+   /* یا var(--foreground) */
+   transition: all .25s ease;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+   font-size: 28px;
+   font-weight: 700;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+   transform: scale(1.15);
+   opacity: .8;
+}
+
+
+.dark .fc .fc-col-header-cell {
+   background-color: var(--card);
 }
