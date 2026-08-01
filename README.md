@@ -15,6 +15,14 @@ This project focuses on building reusable components, scalable architecture, and
 
 ---
 
+# 🌐 Live Demo
+
+🔗 **Demo:** https://modern-admin-dashboard-g2yl.onrender.com/
+
+💻 **Source Code:** https://github.com/SoroushTarizade/modern-admin-dashboard
+
+---
+
 # Preview
 
 ## Dashboard (Light)
@@ -99,7 +107,7 @@ This project focuses on building reusable components, scalable architecture, and
 
 # Folder Structure
 
-```
+```text
 app/
 components/
 hooks/
@@ -117,7 +125,7 @@ assets/
 Clone the repository
 
 ```bash
-git clone https://github.com/soroushtarizade/modern-admin-dashboard.git
+git clone https://github.com/SoroushTarizade/modern-admin-dashboard.git
 ```
 
 Install dependencies
@@ -148,17 +156,16 @@ npm run start
 
 # Project Status
 
-Current Version
+### ✅ Completed
 
-- UI Completed
+- Dashboard UI
 - Component Architecture
-- Dashboard Pages
 - Calendar
 - Orders
 - Product Stock
 - Authentication Pages
 
-Currently Working On
+### 🚧 Currently Working On
 
 - Responsive Design
 - Performance Optimization
@@ -195,14 +202,12 @@ Currently Working On
 
 Frontend Developer
 
-GitHub
-
+🌐 GitHub  
 https://github.com/SoroushTarizade
 
-LinkedIn
-
+💼 LinkedIn  
 https://www.linkedin.com/in/soroush-tarizadeh
 
 ---
 
-If you like this project, don't forget to ⭐ the repository.
+⭐ If you like this project, consider giving it a star!
