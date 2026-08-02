@@ -149,7 +149,8 @@ export default function Notification() {
                         right-0
                         mt-3
 
-                        w-96
+                        w-[calc(100vw-32px)]
+                        sm:w-96
 
                         rounded-2xl
 

@@ -14,7 +14,7 @@ export default function ToggleTheme() {
                     resolvedTheme === "dark" ? "light" : "dark"
                 )
             }
-            className="flex items-center justify-center w-10 h-10 rounded-lg bg-card text-foreground border border-border hover:bg-muted transition-colors"
+            className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-card text-foreground border border-border hover:bg-muted transition-colors"
         >
             {resolvedTheme === "dark" ? (
                 <IoSunnyOutline size={20} />

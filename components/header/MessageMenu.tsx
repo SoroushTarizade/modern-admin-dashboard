@@ -128,7 +128,8 @@ export default function MessageMenu() {
                         right-0
                         mt-3
 
-                        w-80
+                        w-[calc(100vw - 32px)]
+                        sm:w-80
 
                         rounded-2xl
 

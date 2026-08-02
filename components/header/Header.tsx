@@ -11,38 +11,74 @@ interface HeaderProps {
 export default function Header({
     isAuthenticated = true,
 }: HeaderProps) {
+
     return (
         <header
             className="
                 sticky
                 top-0
                 z-40
-                w-[1200px]
+
+                w-full
                 h-[78px]
+
                 bg-card/80
                 backdrop-blur-xl
+
                 border-b
                 border-border
-                px-8
+
+                px-4
+                sm:px-6
+                lg:px-8
+
                 flex
                 items-center
                 justify-between
+
+                gap-4
             "
         >
-            {/* Left */}
-            <p className="text-2xl font-extrabold text-primary ">
+
+            {/* Logo */}
+
+            <p
+                className="
+                    text-xl
+                    sm:text-2xl
+                    font-extrabold
+                    text-primary
+
+                    whitespace-nowrap
+                "
+            >
                 Soroush
-                <span className="text-card-foreground ">Dash</span>
+                <span className="text-card-foreground">
+                    Dash
+                </span>
             </p>
-            <div className="flex items-center gap-6">
+
+
+            {/* Search */}
+
+            <div
+                className="
+                    hidden
+                    md:flex
+                    flex-1
+                    justify-center
+                "
+            >
                 <SearchBar />
             </div>
 
-            {/* Right */}
+
+            {/* Actions */}
 
             <HeaderActions
                 isAuthenticated={isAuthenticated}
             />
+
         </header>
     );
 }
