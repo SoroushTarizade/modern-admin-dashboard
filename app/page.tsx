@@ -21,7 +21,10 @@ import EmptyDashboard from "@/components/dashboard/EmptyDashboard";
 
 import useDashboard from "@/hooks/useDashboard";
 
+
 export default function HomePage() {
+
+
   const {
     loading,
     stats,
@@ -34,52 +37,183 @@ export default function HomePage() {
     recentActivities,
   } = useDashboard();
 
+
+
   if (loading) {
+
     return <DashboardSkeleton />;
+
   }
+
+
 
   if (stats.length === 0) {
+
     return <EmptyDashboard />;
+
   }
 
+
+
   return (
-    <div className="flex justify-center bg-background text-foreground">
-      <div className="flex min-h-screen w-[1440px]">
+
+    <div
+      className="
+        min-h-screen
+
+        bg-background
+        text-foreground
+
+        overflow-x-hidden
+      "
+    >
+
+
+      <div
+        className="
+
+          min-h-screen
+
+          w-full
+        "
+      >
+
+
+
+        {/* Sidebar */}
+
         <Sidebar />
 
-        <div className="flex flex-1 flex-col">
+
+
+
+        {/* Main */}
+
+        <div
+          className="
+          md:ml-[220px]
+          lg:ml-[240px]
+          min-h-screen
+          flex 
+          flex-col
+          "
+        >
+
+
           <Header />
 
-          <main className="space-y-8 p-8">
+
+
+          <main
+            className="
+              space-y-8
+              p-4
+              sm:p-6
+              lg:p-8
+              mt-20
+            "
+          >
+
+
+
             {/* Top */}
 
-            <div className="flex flex-col gap-6 xl:flex-row xl:items-center xl:justify-between">
+            <div
+              className="
+                flex
+
+                flex-col
+
+                gap-6
+
+                xl:flex-row
+
+                xl:items-center
+
+                xl:justify-between
+              "
+            >
+
+
               <DashboardHeader />
 
-              <div className="flex flex-wrap items-center gap-3">
+
+
+              <div
+                className="
+                  flex
+
+                  flex-wrap
+
+                  items-center
+
+                  gap-3
+                "
+              >
+
                 <DashboardFilters />
 
                 <DashboardExport />
+
               </div>
+
+
             </div>
+
+
+
+
 
             {/* Stats */}
 
-            <StatsGrid stats={stats} />
+            <StatsGrid
+              stats={stats}
+            />
+
+
+
+
+
 
             {/* Charts */}
 
-            <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-              <div className="xl:col-span-2">
+            <div
+              className="
+                grid
+
+                grid-cols-1
+
+                gap-6
+
+                xl:grid-cols-3
+              "
+            >
+
+              <div
+                className="
+                  xl:col-span-2
+                "
+              >
+
                 <SalesChart
                   data={sales}
                 />
+
               </div>
+
+
 
               <CustomerChart
                 data={customers}
               />
+
+
             </div>
+
+
+
+
+
 
             {/* Analytics */}
 
@@ -87,32 +221,73 @@ export default function HomePage() {
               data={analytics}
             />
 
+
+
+
+
+
             {/* Deals */}
 
             <DealsTable
               deals={deals}
             />
 
+
+
+
+
+
+
             {/* Products */}
 
-            <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
+            <div
+              className="
+                grid
+
+                grid-cols-1
+
+                gap-6
+
+                xl:grid-cols-2
+              "
+            >
+
               <FeaturedProducts
                 products={featuredProducts}
               />
 
+
               <RecentOrders
                 orders={recentOrders}
               />
+
+
             </div>
+
+
+
+
+
+
 
             {/* Activity */}
 
             <RecentActivity
               activities={recentActivities}
             />
+
+
+
           </main>
+
+
         </div>
+
+
       </div>
+
+
     </div>
+
   );
 }

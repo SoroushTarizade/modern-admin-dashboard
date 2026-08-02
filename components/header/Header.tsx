@@ -15,13 +15,11 @@ export default function Header({
     return (
         <header
             className="
-                sticky
+                fixed
                 top-0
                 z-40
-
                 w-full
                 h-[78px]
-
                 bg-card/80
                 backdrop-blur-xl
 
