@@ -38,7 +38,7 @@ export default function BannerSlider() {
 
             loop
 
-            className="w-[1141px] rounded-2xl"
+            className="w-full rounded-2xl"
         >
 
             {banners.map((banner) => (

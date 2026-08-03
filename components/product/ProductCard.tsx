@@ -39,7 +39,7 @@ export default function ProductCard({ product }: Props) {
 
                 </div>
 
-                <button className="bg-primary text-white rounded-xl px-6 py-2">
+                <button className="bg-primary text-white rounded-xl px-4 sm:px-6 py-2 w-full">
 
                     Edit Product
 

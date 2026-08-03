@@ -1,30 +1,94 @@
-import Header from '@/components/header/Header'
-import BannerSlider from '@/components/product/BannerSlider'
-import ProductSlider from '@/components/product/ProductSlider';
-import Sidebar from '@/components/sidebar/sideBar'
-import React from 'react'
-import { LiaStarSolid } from "react-icons/lia";
-export default function page() {
+import Header from "@/components/header/Header";
+import BannerSlider from "@/components/product/BannerSlider";
+import ProductSlider from "@/components/product/ProductSlider";
+import Sidebar from "@/components/sidebar/sideBar";
+
+
+export default function Page() {
 
     return (
-        <div className='bg-background text-foreground flex justify-center'>
-            <div className='w-[1440px] flex flex-row-reverse justify-between'>
-                <div>
-                    <Header></Header>
-                    <div className='mt-10'>
-                        <div className='ml-10'>
-                            <h1 className='text-3xl font-bold'>Products</h1>
-                        </div>
-                    </div>
-                    <div className='mt-10'>
-                        <BannerSlider></BannerSlider>
-                    </div>
-                    <div className='ml-10 mt-10 w-[1140px] mt-15'>
-                        <ProductSlider />
-                    </div>
-                </div>
-                <Sidebar></Sidebar>
+
+        <div
+            className="
+                min-h-screen
+
+                bg-background
+
+                text-foreground
+            "
+        >
+
+
+            <Sidebar />
+
+
+
+            <div
+                className="
+                    md:ml-[220px]
+                    lg:ml-[240px]
+
+                    min-h-screen
+                "
+            >
+
+
+                <Header />
+
+
+
+                <main
+                    className="
+                        pt-[100px]
+
+                        px-4
+                        sm:px-6
+                        lg:px-8
+
+                        space-y-10
+                    "
+                >
+
+
+
+                    {/* Title */}
+
+                    <h1
+                        className="
+                            text-2xl
+                            sm:text-3xl
+
+                            font-bold
+                        "
+                    >
+                        Products
+                    </h1>
+
+
+
+
+
+                    {/* Banner */}
+
+                    <BannerSlider />
+
+
+
+
+
+                    {/* Products */}
+
+                    <ProductSlider />
+
+
+
+                </main>
+
+
             </div>
+
+
         </div>
-    )
+
+    );
 }

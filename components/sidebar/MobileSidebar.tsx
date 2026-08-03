@@ -6,65 +6,49 @@ import { FiX } from "react-icons/fi";
 import { sidebarItems, sidebarPages } from "./sidebar-data";
 import SidebarItem from "./SidebarItem";
 
+import MobileProfile from "./MobileProfile";
+import MobileLanguage from "./MobileLanguage";
+import MobileSettings from "./MobileSettings";
 
 interface MobileSidebarProps {
-
     open: boolean;
-
     onClose: () => void;
-
+    isAuthenticated?: boolean;
 }
 
-
-
 export default function MobileSidebar({
-
     open,
-
     onClose,
-
+    isAuthenticated = true,
 }: MobileSidebarProps) {
-
 
     const pathname = usePathname();
 
-
-
     return (
-
         <>
-
-
             {/* Overlay */}
 
-            {
-                open && (
+            <div
+                onClick={onClose}
+                className={`
+                    fixed
+                    inset-0
+                    z-40
+                    bg-black/40
+                    transition-opacity
+                    duration-300
+                    md:hidden
 
-                    <div
-                        onClick={onClose}
-
-                        className="
-                            fixed
-                            inset-0
-
-                            z-40
-
-                            bg-black/40
-
-                            md:hidden
-                        "
-                    />
-
-                )
-            }
-
-
-
+                    ${open
+                        ? "opacity-100 visible"
+                        : "opacity-0 invisible"
+                    }
+                `}
+            />
 
             {/* Drawer */}
 
             <aside
-
                 className={`
                     fixed
 
@@ -74,56 +58,42 @@ export default function MobileSidebar({
                     z-50
 
                     h-screen
-
-                    w-[260px]
+                    w-[280px]
 
                     bg-card
 
                     border-r
                     border-border
 
-                    shadow-xl
-
-                    transform
+                    shadow-2xl
 
                     transition-transform
-
                     duration-300
 
                     md:hidden
-
 
                     ${open
                         ? "translate-x-0"
                         : "-translate-x-full"
                     }
-
                 `}
-
             >
-
-
 
                 {/* Header */}
 
                 <div
-
                     className="
                         h-[78px]
 
-                        flex
-
-                        items-center
-
-                        justify-between
-
                         px-5
 
-                        border-b
+                        flex
+                        items-center
+                        justify-between
 
+                        border-b
                         border-border
                     "
-
                 >
 
                     <p
@@ -133,24 +103,14 @@ export default function MobileSidebar({
                             text-primary
                         "
                     >
-
                         Soroush
-                        <span
-                            className="
-                                text-card-foreground
-                            "
-                        >
+                        <span className="text-card-foreground">
                             Dash
                         </span>
-
                     </p>
 
-
-
                     <button
-
                         onClick={onClose}
-
                         className="
                             w-10
                             h-10
@@ -166,215 +126,127 @@ export default function MobileSidebar({
 
                             hover:bg-secondary
 
-                            transition
+                            transition-all
                         "
-
                     >
-
                         <FiX size={22} />
-
-
                     </button>
-
 
                 </div>
 
-
-
-
-
-                {/* Menu */}
+                {/* Content */}
 
                 <div
-
                     className="
-                        py-4
+                        h-[calc(100vh-78px)]
 
                         overflow-y-auto
-
-                        h-[calc(100vh-78px)]
                     "
-
                 >
 
+                    {/* Profile */}
 
-
-                    <ul
-
-                        className="
-                            px-3
-
-                            space-y-1
-                        "
-
-                    >
-
-                        {
-                            sidebarItems.map((item) => (
-
-                                <SidebarItem
-
-                                    key={item.href}
-
-                                    title={item.title}
-
-                                    href={item.href}
-
-                                    active={
-                                        pathname === item.href
-                                    }
-
-                                />
-
-                            ))
-                        }
-
-
-                    </ul>
-
-
-
-
-                    <div
-                        className="
-                            my-5
-
-                            mx-4
-
-                            h-px
-
-                            bg-border
-                        "
+                    <MobileProfile
+                        isAuthenticated={isAuthenticated}
                     />
 
+                    {/* Language */}
 
+                    <MobileLanguage />
 
+                    {/* Main Navigation */}
 
-
-                    <div className="px-3">
-
+                    <div className="mt-4">
 
                         <p
-
                             className="
-                                px-3
+                                px-6
+                                pb-2
 
-                                text-sm
+                                text-xs
 
                                 font-bold
 
                                 uppercase
 
+                                tracking-wider
+
                                 text-muted-foreground
                             "
-
                         >
-
-                            Pages
-
+                            Main
                         </p>
 
+                        <ul className="space-y-1 px-3">
 
+                            {sidebarItems.map((item) => (
 
+                                <SidebarItem
+                                    key={item.href}
+                                    title={item.title}
+                                    href={item.href}
+                                    active={pathname === item.href}
+                                />
 
-                        <ul
-
-                            className="
-                                mt-3
-
-                                space-y-1
-                            "
-
-                        >
-
-                            {
-                                sidebarPages.map((item) => (
-
-                                    <SidebarItem
-
-                                        key={item.href}
-
-                                        title={item.title}
-
-                                        href={item.href}
-
-                                        active={
-                                            pathname === item.href
-                                        }
-
-                                    />
-
-                                ))
-                            }
-
+                            ))}
 
                         </ul>
 
+                    </div>
+
+                    {/* Pages */}
+
+                    <div className="mt-6">
+
+                        <p
+                            className="
+                                px-6
+                                pb-2
+
+                                text-xs
+
+                                font-bold
+
+                                uppercase
+
+                                tracking-wider
+
+                                text-muted-foreground
+                            "
+                        >
+                            Pages
+                        </p>
+
+                        <ul className="space-y-1 px-3">
+
+                            {sidebarPages.map((item) => (
+
+                                <SidebarItem
+                                    key={item.href}
+                                    title={item.title}
+                                    href={item.href}
+                                    active={pathname === item.href}
+                                />
+
+                            ))}
+
+                        </ul>
 
                     </div>
 
+                    {/* Bottom */}
 
+                    <div className="mt-6">
 
+                        <MobileSettings />
 
-
-                    <div
-
-                        className="
-                            my-5
-
-                            mx-4
-
-                            h-px
-
-                            bg-border
-                        "
-
-                    />
-
-
-
-
-
-                    <button
-
-                        className="
-                            mx-4
-
-                            w-[calc(100%-32px)]
-
-                            h-[50px]
-
-                            rounded-xl
-
-                            text-left
-
-                            px-4
-
-                            hover:bg-destructive
-
-                            hover:text-white
-
-                            transition
-                        "
-
-                    >
-
-                        Logout
-
-
-                    </button>
-
-
+                    </div>
 
                 </div>
 
-
             </aside>
 
-
-
         </>
-
     );
 
 }
