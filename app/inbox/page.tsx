@@ -1,183 +1,559 @@
 "use client";
 
+import { useState } from "react";
+
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/sidebar/sideBar";
 
 import MailSidebar from "@/components/mail/MailSidebar";
+import MobileMailSidebar from "@/components/mail/MobileMailSidebar";
+
 import MailToolbar from "@/components/mail/MailToolbar";
 import MailSearch from "@/components/mail/MailSearch";
+
 import MailList from "@/components/mail/MailList";
+
 import MailPreview from "@/components/mail/MailPreview";
+
 import ComposeModal from "@/components/mail/ComposeModal";
 import DeleteModal from "@/components/mail/DeleteModal";
 
 import useMail from "@/hooks/useMail";
 
+import { FiMenu } from "react-icons/fi";
+
+
 export default function InboxPage() {
+
 
     const mail = useMail();
 
+
+    const [
+        openMailSidebar,
+        setOpenMailSidebar
+    ] = useState(false);
+
+
+    const [
+        openMobilePreview,
+        setOpenMobilePreview
+    ] = useState(false);
+
+
+
+    const handleOpenMail = (item: any) => {
+
+        console.log("OPEN MAIL:", item);
+
+        mail.setActiveMail(item);
+
+        setOpenMobilePreview(true);
+
+    };
+
+
+
     return (
 
-        <div className="bg-background text-foreground flex justify-center">
+        <div
+            className="
+                min-h-screen
+                bg-background
+                text-foreground
+                overflow-x-hidden
+            "
+        >
 
-            <div className="flex w-[1440px]">
 
-                <Sidebar />
+            {/* Main Sidebar */}
 
-                <div className="flex-1">
+            <Sidebar />
 
-                    <Header />
 
-                    <div className="p-8">
 
-                        <h1 className="mb-8 text-3xl font-bold">
+            <div
+                className="
+                    md:ml-[240px]
+                    min-h-screen
+                    flex
+                    flex-col
+                "
+            >
+
+
+                <Header />
+
+
+
+                <main
+                    className="
+                        mt-[78px]
+                        p-4
+                        sm:p-6
+                        lg:p-8
+                    "
+                >
+
+
+
+                    <div
+                        className="
+                            flex
+                            items-center
+                            justify-between
+                            mb-8
+                        "
+                    >
+
+                        <h1
+                            className="
+                                text-2xl
+                                sm:text-3xl
+                                font-bold
+                            "
+                        >
                             Inbox
                         </h1>
 
-                        <div className="grid grid-cols-[280px_520px_1fr] gap-6">
 
-                            {/* Sidebar */}
 
-                            <MailSidebar
+                        <button
 
-                                activeCategory={mail.activeCategory}
+                            onClick={() =>
+                                setOpenMailSidebar(true)
+                            }
 
-                                activeLabel={mail.activeLabel}
+                            className="
+                                min-[1400px]:hidden
 
-                                counts={mail.counts}
+                                flex
+                                items-center
+                                justify-center
 
-                                onCategoryChange={mail.setActiveCategory}
+                                w-10
+                                h-10
 
-                                onLabelChange={mail.setActiveLabel}
+                                rounded-xl
 
-                                onCompose={() =>
-                                    mail.setComposeOpen(true)
-                                }
+                                border
+                                border-border
+
+                                bg-card
+                            "
+                        >
+
+                            <FiMenu size={22} />
+
+                        </button>
+
+
+                    </div>
+
+
+
+
+
+                    {/* Desktop 1400+ */}
+
+                    <div
+
+                        className="
+                            hidden
+                            min-[1400px]:grid
+
+                            grid-cols-[280px_minmax(350px,520px)_1fr]
+
+                            gap-6
+                        "
+
+                    >
+
+
+                        <MailSidebar
+
+                            activeCategory={
+                                mail.activeCategory
+                            }
+
+                            activeLabel={
+                                mail.activeLabel
+                            }
+
+                            counts={
+                                mail.counts
+                            }
+
+                            onCategoryChange={
+                                mail.setActiveCategory
+                            }
+
+                            onLabelChange={
+                                mail.setActiveLabel
+                            }
+
+                            onCompose={() =>
+                                mail.setComposeOpen(true)
+                            }
+
+                        />
+
+
+
+
+
+                        <div className="space-y-5">
+
+
+                            <MailSearch
+
+                                value={mail.search}
+
+                                onChange={mail.setSearch}
 
                             />
 
-                            {/* Mail List */}
 
-                            <div className="space-y-5">
 
-                                <MailSearch
+                            <MailToolbar
 
-                                    value={mail.search}
+                                selectedCount={
+                                    mail.selectedIds.length
+                                }
 
-                                    onChange={mail.setSearch}
-
-                                />
-
-                                <MailToolbar
-
-                                    selectedCount={mail.selectedIds.length}
-
-                                    onSelectAll={mail.selectAll}
-
-                                    onDelete={() =>
-                                        mail.setDeleteOpen(true)
-                                    }
-
-                                    onSpam={mail.moveSpam}
-
-                                    onRead={mail.markRead}
-
-                                    onRefresh={() =>
-                                        location.reload()
-                                    }
-
-                                    sort={mail.sort}
-
-                                    onSortChange={mail.setSort}
-
-                                />
-
-                                <MailList
-
-                                    mails={mail.mails}
-
-                                    selectedIds={mail.selectedIds}
-
-                                    activeMailId={mail.activeMail?.id}
-
-                                    onSelect={mail.toggleSelect}
-
-                                    onOpen={mail.setActiveMail}
-
-                                    onStar={mail.toggleStar}
-
-                                />
-
-                            </div>
-
-                            {/* Preview */}
-
-                            <MailPreview
-
-                                mail={mail.activeMail}
-
-                                onToggleStar={() => {
-
-                                    if (!mail.activeMail) return;
-
-                                    mail.toggleStar(
-                                        mail.activeMail.id
-                                    );
-
-                                }}
+                                onSelectAll={
+                                    mail.selectAll
+                                }
 
                                 onDelete={() =>
                                     mail.setDeleteOpen(true)
                                 }
 
-                                onReply={() =>
-                                    mail.setComposeOpen(true)
+                                onSpam={
+                                    mail.moveSpam
                                 }
 
-                                onForward={() =>
-                                    mail.setComposeOpen(true)
+                                onRead={
+                                    mail.markRead
+                                }
+
+                                onRefresh={() =>
+                                    location.reload()
+                                }
+
+                                sort={mail.sort}
+
+                                onSortChange={
+                                    mail.setSort
                                 }
 
                             />
 
+
+
+                            <MailList
+
+                                mails={mail.mails}
+
+                                selectedIds={
+                                    mail.selectedIds
+                                }
+
+                                activeMailId={
+                                    mail.activeMail?.id
+                                }
+
+                                onSelect={
+                                    mail.toggleSelect
+                                }
+
+                                onOpen={
+                                    handleOpenMail
+                                }
+
+                                onStar={
+                                    mail.toggleStar
+                                }
+
+                            />
+
+
                         </div>
+
+
+
+
+
+
+                        <MailPreview
+
+                            mail={
+                                mail.activeMail
+                            }
+
+                            onToggleStar={() => {
+
+                                if (mail.activeMail) {
+
+                                    mail.toggleStar(
+                                        mail.activeMail.id
+                                    );
+
+                                }
+
+                            }}
+
+                            onDelete={() =>
+                                mail.setDeleteOpen(true)
+                            }
+
+                            onReply={() =>
+                                mail.setComposeOpen(true)
+                            }
+
+                            onForward={() =>
+                                mail.setComposeOpen(true)
+                            }
+
+                        />
+
 
                     </div>
 
-                </div>
+
+
+
+
+
+
+
+                    {/* Tablet + Mobile */}
+
+                    <div
+
+                        className="
+                            min-[1400px]:hidden
+
+                            space-y-5
+                        "
+
+                    >
+
+
+                        <MailSearch
+
+                            value={mail.search}
+
+                            onChange={mail.setSearch}
+
+                        />
+
+
+
+                        <MailToolbar
+
+                            selectedCount={
+                                mail.selectedIds.length
+                            }
+
+                            onSelectAll={
+                                mail.selectAll
+                            }
+
+                            onDelete={() =>
+                                mail.setDeleteOpen(true)
+                            }
+
+                            onSpam={
+                                mail.moveSpam
+                            }
+
+                            onRead={
+                                mail.markRead
+                            }
+
+                            onRefresh={() =>
+                                location.reload()
+                            }
+
+                            sort={mail.sort}
+
+                            onSortChange={
+                                mail.setSort
+                            }
+
+                        />
+
+
+
+                        <MailList
+
+                            mails={mail.mails}
+
+                            selectedIds={
+                                mail.selectedIds
+                            }
+
+                            activeMailId={
+                                mail.activeMail?.id
+                            }
+
+                            onSelect={
+                                mail.toggleSelect
+                            }
+
+                            onOpen={
+                                handleOpenMail
+                            }
+
+                            onStar={
+                                mail.toggleStar
+                            }
+
+                        />
+
+                    </div>
+
+
+
+                </main>
+
 
             </div>
 
-            {/* Compose */}
+
+
+
+
+
+            <MobileMailSidebar
+
+                open={
+                    openMailSidebar
+                }
+
+                onClose={() =>
+                    setOpenMailSidebar(false)
+                }
+
+                activeCategory={
+                    mail.activeCategory
+                }
+
+                activeLabel={
+                    mail.activeLabel
+                }
+
+                counts={
+                    mail.counts
+                }
+
+                onCategoryChange={
+                    mail.setActiveCategory
+                }
+
+                onLabelChange={
+                    mail.setActiveLabel
+                }
+
+                onCompose={() =>
+                    mail.setComposeOpen(true)
+                }
+
+            />
+
+
+
+
+
+
+            <MailPreview
+
+                mail={
+                    mail.activeMail
+                }
+
+                mobileOpen={
+                    openMobilePreview
+                }
+
+                onClose={() =>
+                    setOpenMobilePreview(false)
+                }
+
+                onToggleStar={() => {
+
+                    if (mail.activeMail) {
+
+                        mail.toggleStar(
+                            mail.activeMail.id
+                        );
+
+                    }
+
+                }}
+
+                onDelete={() =>
+                    mail.setDeleteOpen(true)
+                }
+
+                onReply={() =>
+                    mail.setComposeOpen(true)
+                }
+
+                onForward={() =>
+                    mail.setComposeOpen(true)
+                }
+
+            />
+
+
+
+
+
+
 
             <ComposeModal
 
-                open={mail.composeOpen}
+                open={
+                    mail.composeOpen
+                }
 
                 onClose={() =>
                     mail.setComposeOpen(false)
                 }
 
-                onSend={mail.sendMail}
+                onSend={
+                    mail.sendMail
+                }
 
             />
 
-            {/* Delete */}
+
+
+
+
 
             <DeleteModal
 
-                open={mail.deleteOpen}
+                open={
+                    mail.deleteOpen
+                }
 
-                count={mail.selectedIds.length}
+                count={
+                    mail.selectedIds.length
+                }
 
                 onClose={() =>
                     mail.setDeleteOpen(false)
                 }
 
-                onConfirm={mail.deleteSelected}
+                onConfirm={
+                    mail.deleteSelected
+                }
 
             />
+
 
         </div>
 

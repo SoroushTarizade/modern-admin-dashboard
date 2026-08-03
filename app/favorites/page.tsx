@@ -4,41 +4,98 @@ import Sidebar from "@/components/sidebar/sideBar";
 import FavoritesCard from "@/components/favorites/FavoritesCard";
 import { favorites } from "@/components/favorites/favorites-data";
 
+
 export default function Page() {
+
     return (
-        <div className="bg-background text-foreground flex justify-center">
 
-            <div className="w-[1440px] flex flex-row justify-between">
-                <Sidebar />
-                <div>
+        <div
+            className="
+                min-h-screen
 
-                    <Header />
+                bg-background
 
-                    <div className="mt-10">
+                text-foreground
+            "
+        >
 
-                        <div className="ml-10">
-                            <h1 className="text-3xl font-bold">
-                                Favorites
-                            </h1>
-                        </div>
+            <Sidebar />
 
-                        <div className="w-[1141px] ml-10 mt-10 grid grid-cols-3 gap-8">
 
-                            {favorites.map((item) => (
+            <div
+                className="
+                    md:ml-[220px]
+                    lg:ml-[240px]
+
+                    min-h-screen
+                "
+            >
+
+                <Header />
+
+
+                <main
+                    className="
+                        pt-[100px]
+
+                        px-4
+                        sm:px-6
+                        lg:px-8
+
+                        space-y-10
+                    "
+                >
+
+
+                    <h1
+                        className="
+                            text-2xl
+                            sm:text-3xl
+
+                            font-bold
+                        "
+                    >
+                        Favorites
+                    </h1>
+
+
+
+                    <div
+                        className="
+                            grid
+
+                            grid-cols-1
+
+                            sm:grid-cols-2
+
+                            xl:grid-cols-3
+
+                            gap-6
+                        "
+                    >
+
+                        {
+                            favorites.map((item) => (
+
                                 <FavoritesCard
                                     key={item.id}
                                     favorites={item}
                                 />
-                            ))}
 
-                        </div>
+                            ))
+                        }
+
 
                     </div>
 
-                </div>
+
+                </main>
+
 
             </div>
 
+
         </div>
+
     );
 }
