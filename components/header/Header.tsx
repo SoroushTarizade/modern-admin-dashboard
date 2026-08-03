@@ -13,13 +13,23 @@ export default function Header({
 }: HeaderProps) {
 
     return (
+
         <header
             className="
                 fixed
+
                 top-0
+                left-0
+
+                md:left-[220px]
+                lg:left-[240px]
+
+                right-0
+
                 z-40
-                w-full
+
                 h-[78px]
+
                 bg-card/80
                 backdrop-blur-xl
 
@@ -32,7 +42,6 @@ export default function Header({
 
                 flex
                 items-center
-                justify-between
 
                 gap-4
             "
@@ -40,21 +49,32 @@ export default function Header({
 
             {/* Logo */}
 
-            <p
-                className="
-                    text-xl
-                    sm:text-2xl
-                    font-extrabold
-                    text-primary
+            <div className="shrink-0">
 
-                    whitespace-nowrap
-                "
-            >
-                Soroush
-                <span className="text-card-foreground">
-                    Dash
-                </span>
-            </p>
+                <p
+                    className="
+                        text-xl
+                        sm:text-2xl
+
+                        font-extrabold
+
+                        text-primary
+
+                        whitespace-nowrap
+                    "
+                >
+
+                    Soroush
+                    <span className="text-card-foreground">
+                        Dash
+                    </span>
+
+                </p>
+
+            </div>
+
+
+
 
 
             {/* Search */}
@@ -62,21 +82,45 @@ export default function Header({
             <div
                 className="
                     hidden
-                    md:flex
+
+                    lg:flex
+
                     flex-1
+
+                    min-w-0
+
                     justify-center
+
+                    px-6
                 "
             >
+
                 <SearchBar />
+
             </div>
+
+
+
 
 
             {/* Actions */}
 
-            <HeaderActions
-                isAuthenticated={isAuthenticated}
-            />
+            <div
+                className="
+                    ml-auto
+
+                    shrink-0
+                "
+            >
+
+                <HeaderActions
+                    isAuthenticated={isAuthenticated}
+                />
+
+            </div>
 
         </header>
+
     );
+
 }

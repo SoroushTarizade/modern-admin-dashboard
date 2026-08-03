@@ -1,8 +1,6 @@
 "use client";
 
-
 import { useState } from "react";
-
 import ToggleTheme from "./ToggleTheme";
 import Notification from "./Notification";
 import MessageMenu from "./MessageMenu";
@@ -105,10 +103,8 @@ export default function HeaderActions({
                     className="
                         hidden
                         lg:block
-
                         w-px
                         h-8
-
                         bg-border
                     "
                 />
@@ -125,30 +121,19 @@ export default function HeaderActions({
                 <div
                     className="
                         hidden
-                        md:block
+                        lg:block
                     "
                 >
-
                     {
                         isAuthenticated
                             ?
-                            <GuestMenu />
-
-                            :
-
                             <UserMenu />
 
+                            :
+                            <GuestMenu />
+
                     }
-
-
                 </div>
-
-
-
-
-
-
-
 
                 {/* Mobile Hamburger */}
 
@@ -158,24 +143,16 @@ export default function HeaderActions({
 
                     className="
                         flex
-
                         md:hidden
-
                         w-10
                         h-10
-
                         items-center
                         justify-center
-
                         rounded-xl
-
                         border
                         border-border
-
                         bg-card
-
                         hover:bg-secondary
-
                         transition
                     "
 

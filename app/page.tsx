@@ -60,10 +60,8 @@ export default function HomePage() {
     <div
       className="
         min-h-screen
-
         bg-background
         text-foreground
-
         overflow-x-hidden
       "
     >
@@ -71,9 +69,7 @@ export default function HomePage() {
 
       <div
         className="
-
           min-h-screen
-
           w-full
         "
       >
@@ -84,11 +80,7 @@ export default function HomePage() {
 
         <Sidebar />
 
-
-
-
         {/* Main */}
-
         <div
           className="
           md:ml-[220px]
@@ -121,15 +113,10 @@ export default function HomePage() {
             <div
               className="
                 flex
-
                 flex-col
-
                 gap-6
-
                 xl:flex-row
-
                 xl:items-center
-
                 xl:justify-between
               "
             >
