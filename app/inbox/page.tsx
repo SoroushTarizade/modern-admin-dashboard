@@ -126,19 +126,14 @@ export default function InboxPage() {
 
                             className="
                                 min-[1400px]:hidden
-
                                 flex
                                 items-center
                                 justify-center
-
                                 w-10
                                 h-10
-
                                 rounded-xl
-
                                 border
                                 border-border
-
                                 bg-card
                             "
                         >

@@ -67,8 +67,7 @@ export default function MailSidebar({
         <aside
 
             className="
-hidden
-md:block
+lg:block
 
 w-[280px]
 
@@ -91,23 +90,15 @@ p-6
 
                 className="
 mb-8
-
 flex
 w-full
-
 items-center
 justify-center
-
 gap-3
-
 rounded-2xl
-
 bg-primary
-
 py-3
-
 font-semibold
-
 text-white
 "
 
