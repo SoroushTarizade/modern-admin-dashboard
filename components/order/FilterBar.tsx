@@ -28,11 +28,11 @@ export default function FilterBar({
     onReset,
 }: Props) {
     return (
-        <div className="w-[818px] h-[70px] bg-border rounded-xl flex items-center justify-around ml-10 mt-5">
+        <div className="mt-6 w-full   p-4 bg-border rounded-2xl flex flex-wrap items-center gap-4 ">
 
             <FiFilter size={20} />
 
-            <span className="font-semibold">
+            <span className="font-semibold whitespace-nowrap">
                 Filter By
             </span>
 
@@ -53,7 +53,7 @@ export default function FilterBar({
 
             <button
                 onClick={onReset}
-                className="flex items-center gap-2 text-destructive font-semibold cursor-pointer"
+                className=" ml-auto flex items-center gap-2 text-destructive font-semibold cursor-pointer"
             >
                 <RiResetLeftLine />
                 Reset

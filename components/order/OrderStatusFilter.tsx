@@ -11,7 +11,7 @@ export default function OrderStatusFilter({
         <select
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="bg-card rounded-lg px-3 py-2 outline-none cursor-pointer"
+            className="bg-card rounded-xl px-3 py-2 w-full sm:w-auto outline-none cursor-pointer"
         >
             <option value="All">
                 All Status

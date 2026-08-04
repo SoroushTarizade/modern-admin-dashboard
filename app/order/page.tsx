@@ -56,45 +56,57 @@ export default function OrdersPage() {
     }
 
     return (
-        <div className="bg-background text-foreground flex justify-center">
+        <div className="min-h-screen bg-background text-foreground">
 
-            <div className="w-[1440px] flex">
+            <Sidebar />
 
-                <Sidebar />
+            <Header />
 
-                <div className="flex-1">
+            <main
+                className="
+            pt-[98px]
 
-                    <Header />
+            px-4
+            sm:px-6
+            lg:px-8
 
-                    <div className="ml-10 mt-15">
-                        <h1 className="text-3xl font-bold">
-                            Order Lists
-                        </h1>
-                    </div>
+            md:ml-[220px]
+            lg:ml-[240px]
+        "
+            >
 
-                    <FilterBar
-                        date={date}
-                        status={status}
-                        type={type}
-                        onDateChange={setDate}
-                        onStatusChange={setStatus}
-                        onTypeChange={setType}
-                        onReset={resetFilters}
-                    />
+                <h1
+                    className="
+                text-2xl
+                sm:text-3xl
 
-                    <OrderTable
-                        orders={currentOrders}
-                    />
+                font-bold
+            "
+                >
+                    Order Lists
+                </h1>
 
-                    <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                    />
+                <FilterBar
+                    date={date}
+                    status={status}
+                    type={type}
+                    onDateChange={setDate}
+                    onStatusChange={setStatus}
+                    onTypeChange={setType}
+                    onReset={resetFilters}
+                />
 
-                </div>
+                <OrderTable
+                    orders={currentOrders}
+                />
 
-            </div>
+                <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                />
+
+            </main>
 
         </div>
     );

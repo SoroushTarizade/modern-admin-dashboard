@@ -12,7 +12,7 @@ export default function Pagination({
     onPageChange,
 }: PaginationProps) {
     return (
-        <div className="flex justify-end items-center gap-2 mt-6 ml-10 w-[1141px]">
+        <div className="flex flex-wrap justify-end items-center gap-2 mt-6 ">
 
             <button
                 disabled={currentPage === 1}
@@ -27,8 +27,8 @@ export default function Pagination({
                     key={index}
                     onClick={() => onPageChange(index + 1)}
                     className={`w-10 h-10 rounded-lg transition ${currentPage === index + 1
-                            ? "bg-primary text-white"
-                            : "bg-card"
+                        ? "bg-primary text-white"
+                        : "bg-card"
                         }`}
                 >
                     {index + 1}

@@ -11,7 +11,7 @@ export default function OrderTypeFilter({
         <select
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="bg-card rounded-lg px-3 py-2 outline-none cursor-pointer"
+            className="bg-card rounded-xl px-3 py-2 w-full sm:w-auto outline-none "
         >
             <option value="All">
                 All Types

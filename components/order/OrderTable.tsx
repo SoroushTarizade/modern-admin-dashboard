@@ -1,6 +1,10 @@
+"use client";
+
 import { Order } from "@/types/order";
-import OrderRow from "./OrderRow";
+
 import TableHeader from "./TableHeader";
+import OrderRow from "./OrderRow";
+import OrderCard from "./OrderCard";
 
 interface OrderTableProps {
     orders: Order[];
@@ -9,25 +13,106 @@ interface OrderTableProps {
 export default function OrderTable({
     orders,
 }: OrderTableProps) {
+
+    if (orders.length === 0) {
+        return (
+
+            <div
+                className="
+                    mt-8
+
+                    rounded-2xl
+
+                    bg-card
+
+                    py-20
+
+                    text-center
+
+                    text-muted-foreground
+
+                    font-medium
+                "
+            >
+                No orders found.
+            </div>
+
+        );
+    }
+
     return (
-        <div className="w-[1141px] bg-card rounded-2xl mt-10 ml-10 overflow-hidden shadow-sm">
 
-            <TableHeader />
+        <>
 
-            {orders.length === 0 ? (
-                <div className="flex items-center justify-center py-20 text-muted-foreground font-medium">
-                    No orders found.
-                </div>
-            ) : (
+            {/* ------------------ */}
+            {/* Desktop Table */}
+            {/* ------------------ */}
+
+            <div
+                className="
+                    hidden
+                    lg:block
+
+                    mt-8
+
+                    w-full
+
+                    overflow-hidden
+
+                    rounded-2xl
+
+                    bg-card
+
+                    shadow-sm
+                "
+            >
+
+                <TableHeader />
+
                 <div>
+
                     {orders.map((order) => (
+
                         <OrderRow
                             key={order.id}
                             order={order}
                         />
+
                     ))}
+
                 </div>
-            )}
-        </div>
+
+            </div>
+
+            {/* ------------------ */}
+            {/* Mobile / Tablet */}
+            {/* ------------------ */}
+
+            <div
+                className="
+                    mt-8
+
+                    grid
+
+                    gap-5
+
+                    lg:hidden
+                "
+            >
+
+                {orders.map((order) => (
+
+                    <OrderCard
+                        key={order.id}
+                        order={order}
+                    />
+
+                ))}
+
+            </div>
+
+        </>
+
     );
+
 }

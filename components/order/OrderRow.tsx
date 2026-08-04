@@ -1,3 +1,5 @@
+"use client";
+
 import { Order } from "@/types/order";
 import StatusBadge from "./StatusBadge";
 
@@ -7,26 +9,85 @@ interface Props {
 
 export default function OrderRow({ order }: Props) {
     return (
-        <div className="grid grid-cols-6 items-center px-6 py-5 border-b border-border hover:bg-background transition-colors duration-200">
-            <div className="font-semibold">
-                {order.id}
+        <div
+            className="
+                grid
+                grid-cols-6
+
+                items-center
+
+                px-6
+                py-5
+
+                border-b
+                border-border
+
+                transition-colors
+                duration-200
+
+                hover:bg-background
+            "
+        >
+            {/* ID */}
+
+            <div className="font-semibold text-primary">
+                #{order.id}
             </div>
 
-            <div>
+            {/* Name */}
+
+            <div
+                className="
+                    font-medium
+
+                    truncate
+                "
+            >
                 {order.name}
             </div>
 
-            <div>
+            {/* Address */}
+
+            <div
+                className="
+                    truncate
+
+                    text-muted-foreground
+                "
+            >
                 {order.address}
             </div>
 
-            <div>
+            {/* Date */}
+
+            <div className="text-sm">
                 {order.date}
             </div>
 
+            {/* Type */}
+
             <div>
-                {order.type}
+                <span
+                    className="
+                        inline-flex
+
+                        rounded-full
+
+                        bg-secondary
+
+                        px-3
+                        py-1
+
+                        text-xs
+
+                        font-medium
+                    "
+                >
+                    {order.type}
+                </span>
             </div>
+
+            {/* Status */}
 
             <div>
                 <StatusBadge status={order.status} />
