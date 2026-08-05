@@ -14,22 +14,40 @@ export default function InvoiceHeader({
     };
 
     return (
-        <div className="flex items-center justify-between mb-10">
-
+        <div
+            className="
+        mb-10
+        flex
+        flex-col
+        gap-5
+        sm:flex-row
+        sm:items-center
+        sm:justify-between
+      "
+        >
             <div>
-                <h1 className="text-3xl font-bold">Invoice</h1>
+                <h1 className="text-2xl font-bold sm:text-3xl">
+                    Invoice
+                </h1>
 
-                <p className="text-muted-foreground mt-2">
+                <p className="mt-2 text-muted-foreground">
                     #{invoiceNumber}
                 </p>
             </div>
 
             <div
-                className={`px-5 py-2 rounded-full font-semibold ${statusStyles[status]}`}
+                className={`
+          inline-flex
+          w-fit
+          rounded-full
+          px-5
+          py-2
+          font-semibold
+          ${statusStyles[status]}
+        `}
             >
                 {status}
             </div>
-
         </div>
     );
 }

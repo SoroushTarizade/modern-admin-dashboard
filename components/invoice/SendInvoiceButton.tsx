@@ -10,27 +10,52 @@ export default function SendInvoiceButton({
     onClick,
 }: SendInvoiceButtonProps) {
     return (
-        <div className="mt-10 flex justify-end">
-
+        <div
+            className="
+        mt-10
+        flex
+        justify-center
+        sm:justify-end
+      "
+        >
             <button
                 onClick={onClick}
-                className="w-[190px] h-[58px] rounded-2xl bg-primary hover:opacity-90 transition-all text-white flex items-center justify-between px-3"
+                className="
+          flex
+          h-[58px]
+          w-full
+          items-center
+          justify-between
+          rounded-2xl
+          bg-primary
+          px-3
+          text-white
+          transition-all
+          hover:opacity-90
+          sm:w-[190px]
+        "
             >
-                <div className="w-[48px] h-[42px] rounded-xl bg-white/20 flex items-center justify-center">
-
+                <div
+                    className="
+            flex
+            h-[42px]
+            w-[48px]
+            items-center
+            justify-center
+            rounded-xl
+            bg-white/20
+          "
+                >
                     <IoIosSend
                         size={24}
                         className="text-white"
                     />
-
                 </div>
 
-                <span className="font-semibold pr-5">
+                <span className="pr-5 font-semibold">
                     Send Invoice
                 </span>
-
             </button>
-
         </div>
     );
 }

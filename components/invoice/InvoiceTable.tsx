@@ -1,4 +1,5 @@
 import { InvoiceItem } from "@/types/invoice";
+
 import InvoiceRow from "./InvoiceRow";
 
 interface InvoiceTableProps {
@@ -9,14 +10,17 @@ export default function InvoiceTable({
     items,
 }: InvoiceTableProps) {
     return (
-        <div className="overflow-hidden rounded-2xl border border-border">
-
-            <table className="w-full">
-
+        <div
+            className="
+        overflow-x-auto
+        rounded-2xl
+        border
+        border-border
+      "
+        >
+            <table className="min-w-[700px] w-full">
                 <thead className="bg-border">
-
                     <tr>
-
                         <th className="py-4 text-center">
                             Serial No.
                         </th>
@@ -36,13 +40,10 @@ export default function InvoiceTable({
                         <th className="py-4 text-center">
                             Total Cost
                         </th>
-
                     </tr>
-
                 </thead>
 
                 <tbody>
-
                     {items.map((item, index) => (
                         <InvoiceRow
                             key={item.id}
@@ -50,11 +51,8 @@ export default function InvoiceTable({
                             item={item}
                         />
                     ))}
-
                 </tbody>
-
             </table>
-
         </div>
     );
 }

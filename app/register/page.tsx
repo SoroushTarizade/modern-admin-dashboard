@@ -15,7 +15,13 @@ export default function RegisterPage() {
                 subtitle="Create your account to get started."
             >
 
-                <form className="space-y-6">
+                <form
+                    className="
+                        space-y-5
+
+                        sm:space-y-6
+                    "
+                >
 
                     <AuthInput
                         label="Username"
@@ -24,6 +30,7 @@ export default function RegisterPage() {
                         autoComplete="username"
                         placeholder="Enter your username"
                     />
+
 
                     <AuthInput
                         label="Email Address"
@@ -34,6 +41,7 @@ export default function RegisterPage() {
                         placeholder="Enter your email"
                     />
 
+
                     <PasswordInput
                         label="Password"
                         id="password"
@@ -41,6 +49,7 @@ export default function RegisterPage() {
                         autoComplete="new-password"
                         placeholder="Create a password"
                     />
+
 
                     <PasswordInput
                         label="Confirm Password"
@@ -50,22 +59,36 @@ export default function RegisterPage() {
                         placeholder="Confirm your password"
                     />
 
+
                     <AuthButton>
                         Create Account
                     </AuthButton>
 
-                    <p className="text-center text-sm text-muted-foreground">
+
+                    <p
+                        className="
+                            text-center
+                            text-sm
+                            text-muted-foreground
+                        "
+                    >
 
                         Already have an account?
 
                         <Link
                             href="/login"
-                            className="ml-1 text-primary font-semibold hover:underline"
+                            className="
+                                ml-1
+                                font-semibold
+                                text-primary
+                                hover:underline
+                            "
                         >
                             Login
                         </Link>
 
                     </p>
+
 
                 </form>
 

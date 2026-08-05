@@ -8,7 +8,23 @@ export default function AuthBackground({
     children,
 }: AuthBackgroundProps) {
     return (
-        <div className="relative min-h-screen w-full overflow-hidden bg-primary flex items-center justify-center">
+        <div
+            className="
+                relative
+                min-h-screen
+                w-full
+                overflow-hidden
+
+                bg-primary
+
+                flex
+                items-center
+                justify-center
+
+                px-4
+                py-8
+            "
+        >
 
             {/* Mesh Gradient */}
 
@@ -24,16 +40,65 @@ export default function AuthBackground({
                 }}
             />
 
-            {/* Glow */}
 
-            <div className="absolute -top-48 -left-48 w-[520px] h-[520px] rounded-full bg-blue-500/20 blur-[170px]" />
+            {/* Glow Top */}
 
-            <div className="absolute -bottom-52 -right-52 w-[500px] h-[500px] rounded-full bg-cyan-400/20 blur-[170px]" />
+            <div
+                className="
+                    absolute
+
+                    -top-40
+                    -left-40
+
+                    h-[350px]
+                    w-[350px]
+
+                    sm:h-[520px]
+                    sm:w-[520px]
+
+                    rounded-full
+                    bg-blue-500/20
+
+                    blur-[120px]
+
+                    sm:blur-[170px]
+                "
+            />
+
+
+            {/* Glow Bottom */}
+
+            <div
+                className="
+                    absolute
+
+                    -bottom-40
+                    -right-40
+
+                    h-[350px]
+                    w-[350px]
+
+                    sm:h-[500px]
+                    sm:w-[500px]
+
+                    rounded-full
+                    bg-cyan-400/20
+
+                    blur-[120px]
+
+                    sm:blur-[170px]
+                "
+            />
+
 
             {/* Grid */}
 
             <div
-                className="absolute inset-0 opacity-[0.03]"
+                className="
+                    absolute
+                    inset-0
+                    opacity-[0.03]
+                "
                 style={{
                     backgroundImage: `
                         linear-gradient(to right,#ffffff 1px,transparent 1px),
@@ -43,20 +108,86 @@ export default function AuthBackground({
                 }}
             />
 
-            {/* Floating Circle */}
 
-            <div className="absolute top-20 left-24 w-40 h-40 rounded-full border border-white/10 backdrop-blur-3xl bg-white/5" />
+            {/* Floating Circle Left */}
 
-            <div className="absolute bottom-24 right-32 w-28 h-28 rounded-full border border-white/10 backdrop-blur-xl bg-white/5" />
+            <div
+                className="
+                    absolute
+
+                    top-10
+                    left-5
+
+                    sm:top-20
+                    sm:left-24
+
+                    h-28
+                    w-28
+
+                    sm:h-40
+                    sm:w-40
+
+                    rounded-full
+
+                    border
+                    border-white/10
+
+                    backdrop-blur-3xl
+
+                    bg-white/5
+                "
+            />
+
+
+            {/* Floating Circle Right */}
+
+            <div
+                className="
+                    absolute
+
+                    bottom-10
+                    right-5
+
+                    sm:bottom-24
+                    sm:right-32
+
+                    h-20
+                    w-20
+
+                    sm:h-28
+                    sm:w-28
+
+                    rounded-full
+
+                    border
+                    border-white/10
+
+                    backdrop-blur-xl
+
+                    bg-white/5
+                "
+            />
+
 
             {/* Decorative Rings */}
 
             <svg
-                className="absolute top-24 right-32 opacity-10"
+                className="
+                    absolute
+
+                    top-10
+                    right-5
+
+                    opacity-10
+
+                    sm:top-24
+                    sm:right-32
+                "
                 width="220"
                 height="220"
                 viewBox="0 0 220 220"
             >
+
                 <circle
                     cx="110"
                     cy="110"
@@ -66,6 +197,7 @@ export default function AuthBackground({
                     fill="none"
                 />
 
+
                 <circle
                     cx="110"
                     cy="110"
@@ -74,11 +206,21 @@ export default function AuthBackground({
                     strokeWidth="2"
                     fill="none"
                 />
+
             </svg>
+
 
             {/* Content */}
 
-            <div className="relative z-10">
+            <div
+                className="
+                    relative
+                    z-10
+                    w-full
+                    flex
+                    justify-center
+                "
+            >
                 {children}
             </div>
 

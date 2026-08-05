@@ -8,7 +8,8 @@ export default function InvoiceSummary({
     invoice,
 }: InvoiceSummaryProps) {
     const subtotal = invoice.items.reduce(
-        (sum, item) => sum + item.quantity * item.price,
+        (sum, item) =>
+            sum + item.quantity * item.price,
         0
     );
 
@@ -20,10 +21,14 @@ export default function InvoiceSummary({
 
     return (
         <div className="mt-10 flex justify-end">
-
-            <div className="w-[360px] space-y-4">
-
-                <div className="flex justify-between">
+            <div
+                className="
+          w-full
+          space-y-4
+          sm:max-w-[360px]
+        "
+            >
+                <div className="flex justify-between gap-4">
                     <span className="text-muted-foreground">
                         Subtotal
                     </span>
@@ -33,7 +38,8 @@ export default function InvoiceSummary({
                     </span>
                 </div>
 
-                <div className="flex justify-between">
+
+                <div className="flex justify-between gap-4">
                     <span className="text-muted-foreground">
                         Discount
                     </span>
@@ -43,7 +49,8 @@ export default function InvoiceSummary({
                     </span>
                 </div>
 
-                <div className="flex justify-between">
+
+                <div className="flex justify-between gap-4">
                     <span className="text-muted-foreground">
                         Tax
                     </span>
@@ -53,7 +60,8 @@ export default function InvoiceSummary({
                     </span>
                 </div>
 
-                <div className="flex justify-between">
+
+                <div className="flex justify-between gap-4">
                     <span className="text-muted-foreground">
                         Shipping
                     </span>
@@ -63,28 +71,33 @@ export default function InvoiceSummary({
                     </span>
                 </div>
 
+
                 <hr className="border-border" />
 
-                <div className="flex justify-between text-xl font-bold">
-                    <span>Total</span>
 
-                    <span>${total.toFixed(2)}</span>
+                <div className="flex justify-between text-xl font-bold">
+                    <span>
+                        Total
+                    </span>
+
+                    <span>
+                        ${total.toFixed(2)}
+                    </span>
                 </div>
 
+
                 {invoice.notes && (
-                    <div className="mt-8 rounded-2xl bg-background border border-border p-4">
-                        <h3 className="font-semibold mb-2">
+                    <div className="mt-8 rounded-2xl border border-border bg-background p-4">
+                        <h3 className="mb-2 font-semibold">
                             Notes
                         </h3>
 
-                        <p className="text-sm text-muted-foreground leading-6">
+                        <p className="text-sm leading-6 text-muted-foreground">
                             {invoice.notes}
                         </p>
                     </div>
                 )}
-
             </div>
-
         </div>
     );
 }

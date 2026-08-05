@@ -15,37 +15,116 @@ export default function AuthCard({
         <div
             className="
                 relative
-                w-[630px]
+
+                w-full
+                max-w-[630px]
+
                 rounded-3xl
+
                 overflow-hidden
+
                 border
                 border-white/10
+
                 bg-card/90
+
                 backdrop-blur-2xl
+
                 shadow-[0_25px_80px_rgba(0,0,0,.35)]
-                px-14
-                py-12
+
+                px-5
+                py-8
+
+                sm:px-10
+                sm:py-12
+
+                lg:px-14
             "
         >
+
             {/* Glow Top */}
 
-            <div className="absolute -top-24 -right-24 w-56 h-56 rounded-full bg-primary/10 blur-3xl" />
+            <div
+                className="
+                    absolute
+
+                    -top-24
+                    -right-24
+
+                    h-56
+                    w-56
+
+                    rounded-full
+
+                    bg-primary/10
+
+                    blur-3xl
+                "
+            />
+
 
             {/* Glow Bottom */}
 
-            <div className="absolute -bottom-24 -left-24 w-56 h-56 rounded-full bg-cyan-400/10 blur-3xl" />
+            <div
+                className="
+                    absolute
+
+                    -bottom-24
+                    -left-24
+
+                    h-56
+                    w-56
+
+                    rounded-full
+
+                    bg-cyan-400/10
+
+                    blur-3xl
+                "
+            />
+
 
             {/* Content */}
 
             <div className="relative z-10">
 
+
                 {/* Logo */}
 
-                <div className="flex justify-center mb-8">
+                <div
+                    className="
+                        mb-8
 
-                    <div className="w-18 h-18 rounded-2xl bg-primary flex items-center justify-center shadow-lg">
+                        flex
+                        justify-center
+                    "
+                >
 
-                        <span className="text-white text-3xl font-black">
+                    <div
+                        className="
+                            flex
+
+                            h-16
+                            w-16
+
+                            items-center
+                            justify-center
+
+                            rounded-2xl
+
+                            bg-primary
+
+                            shadow-lg
+                        "
+                    >
+
+                        <span
+                            className="
+                                text-3xl
+                                font-black
+                                text-white
+                            "
+                        >
                             D
                         </span>
 
@@ -53,23 +132,55 @@ export default function AuthCard({
 
                 </div>
 
+
                 {/* Header */}
 
-                <div className="text-center mb-10">
+                <div
+                    className="
+                        mb-8
 
-                    <h1 className="text-3xl font-extrabold text-card-foreground">
+                        text-center
+
+                        sm:mb-10
+                    "
+                >
+
+                    <h1
+                        className="
+                            text-2xl
+
+                            font-extrabold
+
+                            sm:text-3xl
+
+                            text-card-foreground
+                        "
+                    >
                         {title}
                     </h1>
 
-                    <p className="text-muted-foreground mt-3 text-base">
+
+                    <p
+                        className="
+                            mt-3
+
+                            text-sm
+
+                            text-muted-foreground
+
+                            sm:text-base
+                        "
+                    >
                         {subtitle}
                     </p>
 
                 </div>
 
-                {/* Form */}
+
+                {/* Form Content */}
 
                 {children}
+
 
             </div>
 

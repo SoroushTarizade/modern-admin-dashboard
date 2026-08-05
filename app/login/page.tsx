@@ -15,7 +15,12 @@ export default function LoginPage() {
                 subtitle="Please enter your email and password to continue."
             >
 
-                <form className="space-y-6">
+                <form
+                    className="
+                        space-y-5
+                        sm:space-y-6
+                    "
+                >
 
                     <AuthInput
                         label="Email Address"
@@ -26,22 +31,45 @@ export default function LoginPage() {
                         placeholder="Enter your email"
                     />
 
+
                     <div>
 
-                        <div className="flex justify-between items-center mb-3">
+                        <div
+                            className="
+                                mb-3
+                                flex
+                                flex-col
+                                gap-2
 
-                            <label className="text-sm font-semibold">
+                                sm:flex-row
+                                sm:items-center
+                                sm:justify-between
+                            "
+                        >
+
+                            <label
+                                className="
+                                    text-sm
+                                    font-semibold
+                                "
+                            >
                                 Password
                             </label>
 
+
                             <Link
                                 href="/forgot-password"
-                                className="text-primary text-sm hover:underline"
+                                className="
+                                    text-sm
+                                    text-primary
+                                    hover:underline
+                                "
                             >
                                 Forgot Password?
                             </Link>
 
                         </div>
+
 
                         <PasswordInput
                             label=""
@@ -53,22 +81,36 @@ export default function LoginPage() {
 
                     </div>
 
+
                     <AuthButton>
                         Sign In
                     </AuthButton>
 
-                    <p className="text-center text-sm text-muted-foreground">
+
+                    <p
+                        className="
+                            text-center
+                            text-sm
+                            text-muted-foreground
+                        "
+                    >
 
                         Don't have an account?
 
                         <Link
                             href="/register"
-                            className="ml-1 text-primary font-semibold hover:underline"
+                            className="
+                                ml-1
+                                font-semibold
+                                text-primary
+                                hover:underline
+                            "
                         >
                             Register
                         </Link>
 
                     </p>
+
 
                 </form>
 

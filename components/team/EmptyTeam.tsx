@@ -1,6 +1,8 @@
-import { MdOutlineReceiptLong } from "react-icons/md";
+"use client";
 
-export default function EmptyInvoice() {
+import { HiOutlineUserGroup } from "react-icons/hi2";
+
+export default function EmptyTeam() {
     return (
         <div
             className="
@@ -10,42 +12,51 @@ export default function EmptyInvoice() {
         flex-col
         items-center
         justify-center
+
         rounded-3xl
         border-2
         border-dashed
         border-border
         bg-card
+
         px-6
         text-center
-        sm:min-h-[500px]
+
+        sm:min-h-[450px]
       "
         >
-            <MdOutlineReceiptLong
-                size={60}
-                className="text-primary sm:h-20 sm:w-20"
+
+            <HiOutlineUserGroup
+                size={70}
+                className="text-primary"
             />
+
 
             <h2
                 className="
           mt-6
           text-xl
           font-bold
+
           sm:text-2xl
         "
             >
-                No Invoice Found
+                No Team Members
             </h2>
+
 
             <p
                 className="
           mt-3
           text-sm
           text-muted-foreground
+
           sm:text-base
         "
             >
-                There is currently no invoice to display.
+                Start by adding your first team member.
             </p>
+
         </div>
     );
 }
