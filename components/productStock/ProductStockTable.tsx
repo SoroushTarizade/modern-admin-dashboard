@@ -1,7 +1,9 @@
 "use client";
 
 import { ProductStock } from "@/types/productStock";
+
 import ProductStockRow from "./ProductStockRow";
+import ProductStockCard from "./ProductStockCard";
 
 interface ProductStockTableProps {
     products: ProductStock[];
@@ -14,42 +16,153 @@ export default function ProductStockTable({
     onDelete,
     onUpdate,
 }: ProductStockTableProps) {
+
+    if (products.length === 0) {
+        return (
+            <div
+                className="
+                    mt-8
+                    rounded-2xl
+                    bg-card
+                    py-20
+                    text-center
+                    text-muted-foreground
+                    font-medium
+                "
+            >
+                No products found.
+            </div>
+        );
+    }
+
     return (
-        <div className="w-[1141px] bg-card rounded-2xl ml-10 mt-10 overflow-hidden">
+        <>
+            {/* ===================== */}
+            {/* Desktop Table */}
+            {/* ===================== */}
 
-            <table className="w-full">
+            <div
+                className="
+                    hidden
+                    lg:block
 
-                <thead>
+                    mt-8
 
-                    <tr className="h-14 border-b border-border">
+                    w-full
 
-                        <th>Image</th>
-                        <th>Product Name</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Piece</th>
-                        <th>Available Color</th>
-                        <th>Action</th>
+                    overflow-hidden
 
-                    </tr>
+                    rounded-2xl
 
-                </thead>
+                    bg-card
 
-                <tbody>
+                    shadow-sm
+                "
+            >
 
-                    {products.map((product) => (
-                        <ProductStockRow
-                            key={product.id}
-                            product={product}
-                            onDelete={onDelete}
-                            onUpdate={onUpdate}
-                        />
-                    ))}
+                <table className="w-full">
 
-                </tbody>
+                    <thead>
 
-            </table>
+                        <tr
+                            className="
+                                h-16
 
-        </div>
+                                border-b
+                                border-border
+
+                                bg-secondary/40
+
+                                text-xs
+
+                                uppercase
+
+                                tracking-wider
+
+                                text-muted-foreground
+                            "
+                        >
+
+                            <th className="font-bold">
+                                Image
+                            </th>
+
+                            <th className="font-bold">
+                                Product
+                            </th>
+
+                            <th className="font-bold">
+                                Category
+                            </th>
+
+                            <th className="font-bold">
+                                Price
+                            </th>
+
+                            <th className="font-bold">
+                                Stock
+                            </th>
+
+                            <th className="font-bold">
+                                Colors
+                            </th>
+
+                            <th className="font-bold">
+                                Actions
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {products.map((product) => (
+
+                            <ProductStockRow
+                                key={product.id}
+                                product={product}
+                                onDelete={onDelete}
+                                onUpdate={onUpdate}
+                            />
+
+                        ))}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {/* ===================== */}
+            {/* Mobile / Tablet */}
+            {/* ===================== */}
+
+            <div
+                className="
+                    mt-8
+
+                    grid
+
+                    gap-5
+
+                    lg:hidden
+                "
+            >
+
+                {products.map((product) => (
+
+                    <ProductStockCard
+                        key={product.id}
+                        product={product}
+                        onDelete={onDelete}
+                        onUpdate={onUpdate}
+                    />
+
+                ))}
+
+            </div>
+
+        </>
     );
 }

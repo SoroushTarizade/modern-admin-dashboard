@@ -8,6 +8,7 @@ import ProductStockTable from "@/components/productStock/ProductStockTable";
 import useProductStock from "@/hooks/useProductStock";
 
 export default function ProductStockPage() {
+
     const {
         products,
         handleDelete,
@@ -15,23 +16,54 @@ export default function ProductStockPage() {
     } = useProductStock();
 
     return (
-        <div className="bg-background text-foreground flex justify-center">
 
-            <div className="w-[1440px] flex">
+        <div
+            className="
+                min-h-screen
 
-                <Sidebar />
+                bg-background
 
-                <div className="flex-1">
+                text-foreground
+            "
+        >
 
-                    <Header />
+            <Sidebar />
 
-                    <div className="ml-10 mt-15">
+            <Header />
 
-                        <h1 className="text-3xl font-bold">
-                            Product Stock
-                        </h1>
+            <main
+                className="
+                    pt-[98px]
 
-                    </div>
+                    px-4
+                    sm:px-6
+                    lg:px-8
+
+                    md:ml-[220px]
+                    lg:ml-[240px]
+                "
+            >
+
+                <div
+                    className="
+                        mx-auto
+
+                        w-full
+
+                        max-w-7xl
+                    "
+                >
+
+                    <h1
+                        className="
+                            text-2xl
+                            sm:text-3xl
+
+                            font-bold
+                        "
+                    >
+                        Product Stock
+                    </h1>
 
                     <ProductStockTable
                         products={products}
@@ -41,8 +73,10 @@ export default function ProductStockPage() {
 
                 </div>
 
-            </div>
+            </main>
 
         </div>
+
     );
+
 }

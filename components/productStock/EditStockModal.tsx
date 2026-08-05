@@ -17,6 +17,7 @@ export default function EditStockModal({
     onClose,
     onSave,
 }: EditStockModalProps) {
+
     const [form, setForm] = useState(product);
 
     useEffect(() => {
@@ -26,11 +27,46 @@ export default function EditStockModal({
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
 
-            <div className="w-[520px] bg-card rounded-2xl p-6">
+        <div
+            className="
+                fixed
+                inset-0
+                z-50
 
-                <h2 className="text-2xl font-bold mb-6">
+                flex
+                items-center
+                justify-center
+
+                bg-black/50
+
+                p-4
+            "
+        >
+
+            <div
+                className="
+                    w-full
+                    max-w-xl
+
+                    rounded-3xl
+
+                    bg-card
+
+                    p-6
+                    sm:p-8
+
+                    shadow-2xl
+                "
+            >
+
+                <h2
+                    className="
+                        text-2xl
+                        font-bold
+                        mb-8
+                    "
+                >
                     Edit Product
                 </h2>
 
@@ -44,8 +80,23 @@ export default function EditStockModal({
                                 name: e.target.value,
                             })
                         }
-                        className="w-full border border-border rounded-xl p-3"
                         placeholder="Product Name"
+                        className="
+                            w-full
+
+                            rounded-xl
+
+                            border
+                            border-border
+
+                            bg-background
+
+                            p-3
+
+                            outline-none
+
+                            focus:border-primary
+                        "
                     />
 
                     <input
@@ -56,8 +107,23 @@ export default function EditStockModal({
                                 category: e.target.value,
                             })
                         }
-                        className="w-full border border-border rounded-xl p-3"
                         placeholder="Category"
+                        className="
+                            w-full
+
+                            rounded-xl
+
+                            border
+                            border-border
+
+                            bg-background
+
+                            p-3
+
+                            outline-none
+
+                            focus:border-primary
+                        "
                     />
 
                     <input
@@ -69,8 +135,23 @@ export default function EditStockModal({
                                 price: Number(e.target.value),
                             })
                         }
-                        className="w-full border border-border rounded-xl p-3"
                         placeholder="Price"
+                        className="
+                            w-full
+
+                            rounded-xl
+
+                            border
+                            border-border
+
+                            bg-background
+
+                            p-3
+
+                            outline-none
+
+                            focus:border-primary
+                        "
                     />
 
                     <input
@@ -82,17 +163,54 @@ export default function EditStockModal({
                                 quantity: Number(e.target.value),
                             })
                         }
-                        className="w-full border border-border rounded-xl p-3"
                         placeholder="Quantity"
+                        className="
+                            w-full
+
+                            rounded-xl
+
+                            border
+                            border-border
+
+                            bg-background
+
+                            p-3
+
+                            outline-none
+
+                            focus:border-primary
+                        "
                     />
 
                 </div>
 
-                <div className="flex justify-end gap-3 mt-8">
+                <div
+                    className="
+                        mt-8
+
+                        flex
+
+                        flex-col-reverse
+                        sm:flex-row
+
+                        justify-end
+
+                        gap-3
+                    "
+                >
 
                     <button
                         onClick={onClose}
-                        className="px-5 py-2 border border-border rounded-xl"
+                        className="
+                            h-11
+
+                            rounded-xl
+
+                            border
+                            border-border
+
+                            px-6
+                        "
                     >
                         Cancel
                     </button>
@@ -102,9 +220,19 @@ export default function EditStockModal({
                             onSave(form);
                             onClose();
                         }}
-                        className="px-5 py-2 bg-primary text-white rounded-xl"
+                        className="
+                            h-11
+
+                            rounded-xl
+
+                            bg-primary
+
+                            px-6
+
+                            text-white
+                        "
                     >
-                        Save
+                        Save Changes
                     </button>
 
                 </div>
@@ -112,5 +240,7 @@ export default function EditStockModal({
             </div>
 
         </div>
+
     );
+
 }

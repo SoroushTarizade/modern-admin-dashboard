@@ -6,7 +6,6 @@ import { ProductStock } from "@/types/productStock";
 
 import StockQuantity from "./StockQuantity";
 import StockColors from "./StockColors";
-// import StockColors from "./StockColors";
 import StockActions from "./StockActions";
 
 interface ProductStockRowProps {
@@ -20,47 +19,102 @@ export default function ProductStockRow({
     onDelete,
     onUpdate,
 }: ProductStockRowProps) {
-    return (
-        <tr className="border-b border-border hover:bg-background transition">
 
-            <td className="py-5 px-4">
+    return (
+
+        <tr
+            className="
+                border-b
+                border-border
+
+                hover:bg-background
+
+                transition-colors
+            "
+        >
+
+            {/* Image */}
+
+            <td className="px-5 py-5">
+
                 <Image
                     src={product.image}
                     alt={product.name}
-                    width={80}
-                    height={60}
-                    className="rounded-xl object-cover"
+                    width={72}
+                    height={72}
+                    className="
+                        rounded-xl
+                        object-cover
+                    "
                 />
+
             </td>
 
-            <td className="font-semibold">
+            {/* Name */}
+
+            <td
+                className="
+                    font-semibold
+                    whitespace-nowrap
+                "
+            >
                 {product.name}
             </td>
 
-            <td>
+            {/* Category */}
+
+            <td
+                className="
+                    text-muted-foreground
+                "
+            >
                 {product.category}
             </td>
 
-            <td>
+            {/* Price */}
+
+            <td
+                className="
+                    font-medium
+                "
+            >
                 ${product.price.toFixed(2)}
             </td>
 
-            <td>
-                <StockQuantity quantity={product.quantity} />
-            </td>
+            {/* Quantity */}
 
             <td>
-                <StockColors colors={product.colors} />
+
+                <StockQuantity
+                    quantity={product.quantity}
+                />
+
             </td>
 
+            {/* Colors */}
+
             <td>
+
+                <StockColors
+                    colors={product.colors}
+                />
+
+            </td>
+
+            {/* Actions */}
+
+            <td>
+
                 <StockActions
                     product={product}
                     onDelete={onDelete}
                     onUpdate={onUpdate}
                 />
+
             </td>
 
         </tr>
+
     );
+
 }
