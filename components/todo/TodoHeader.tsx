@@ -8,9 +8,9 @@ export default function TodoHeader({
     onAddTask,
 }: TodoHeaderProps) {
     return (
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <h1 className="text-3xl font-bold text-foreground">
+                <h1 className="text-2xl font-bold text-foreground sm:text-3xl">
                     To-Do List
                 </h1>
 
@@ -21,7 +21,9 @@ export default function TodoHeader({
 
             <button
                 onClick={onAddTask}
-                className="rounded-2xl bg-primary px-6 py-3 font-medium text-white transition hover:opacity-90"
+                className="w-full rounded-2xl bg-primary px-6 py-3 font-medium text-white transition hover:opacity-90
+                sm:w-auto
+                "
             >
                 Add New Task
             </button>

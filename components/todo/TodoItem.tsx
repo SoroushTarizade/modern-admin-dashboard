@@ -22,13 +22,13 @@ export default function TodoItem({
 }: TodoItemProps) {
     return (
         <div
-            className={`flex items-center justify-between rounded-2xl px-6 py-6 transition-all duration-300
+            className={`flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between rounded-2xl  transition-all duration-300
       ${task.completed
                     ? "bg-primary"
                     : "bg-card"
                 }`}
         >
-            <div className="flex items-center gap-5">
+            <div className="flex items-start gap-5">
 
                 <input
                     type="checkbox"
@@ -40,8 +40,8 @@ export default function TodoItem({
                 />
 
                 <p
-                    className={`text-lg transition-all
-          ${task.completed
+                    className={`text-base sm:text-lg break-words transition-all
+                            ${task.completed
                             ? "line-through text-white opacity-80"
                             : "text-foreground"
                         }`}
@@ -51,7 +51,7 @@ export default function TodoItem({
 
             </div>
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center justify-end  gap-5 sm:justify-center">
 
                 {task.completed ? (
                     <Trash2
