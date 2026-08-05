@@ -9,17 +9,11 @@ import {
 
 interface CalendarHeaderProps {
     title: string;
-
     currentView: CalendarView;
-
     onPrev: () => void;
-
     onNext: () => void;
-
     onToday: () => void;
-
     onChangeView: (view: CalendarView) => void;
-
     onAddEvent: () => void;
 }
 
@@ -55,67 +49,171 @@ export default function CalendarHeader({
     onAddEvent,
 }: CalendarHeaderProps) {
     return (
-        <div className="mb-6 flex items-center justify-between rounded-xl bg-card p-5 shadow-sm">
+        <div
+            className="
+                mb-6
+                rounded-2xl
+                border
+                border-border
+                bg-card
+                p-4
+                sm:p-6
+                shadow-sm
+            "
+        >
+            <div
+                className="
+                    flex
+                    flex-col
+                    gap-6
+                    xl:flex-row
+                    xl:items-center
+                    xl:justify-between
+                "
+            >
+                {/* Left */}
 
-            <div className="flex items-center gap-3">
-
-                <button
-                    onClick={onToday}
-                    className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-muted"
+                <div
+                    className="
+                        flex
+                        flex-col
+                        gap-4
+                        sm:flex-row
+                        sm:flex-wrap
+                        sm:items-center
+                    "
                 >
-                    Today
-                </button>
-
-                <button
-                    onClick={onPrev}
-                    className="rounded-lg border p-2"
-                >
-                    <FiChevronLeft size={20} />
-                </button>
-
-                <button
-                    onClick={onNext}
-                    className="rounded-lg border p-2"
-                >
-                    <FiChevronRight size={20} />
-                </button>
-
-                <h2 className="ml-2 text-2xl font-bold">
-                    {title}
-                </h2>
-
-            </div>
-
-            <div className="flex items-center gap-2">
-
-                {views.map((view) => (
                     <button
-                        key={view.value}
-                        onClick={() =>
-                            onChangeView(view.value)
-                        }
-                        className={`rounded-lg px-4 py-2 text-sm font-medium transition
-              ${currentView === view.value
-                                ? "bg-primary text-white"
-                                : "bg-card "
-                            }
-            `}
+                        onClick={onToday}
+                        className="
+                            h-11
+                            rounded-xl
+                            bg-primary
+                            px-5
+                            font-semibold
+                            text-white
+                            transition
+                            hover:opacity-90
+                        "
                     >
-                        {view.label}
+                        Today
                     </button>
-                ))}
 
-                <button
-                    onClick={onAddEvent}
-                    className="ml-3 flex items-center gap-2 rounded-lg bg-primary px-4 py-2 font-semibold text-muted"
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={onPrev}
+                            className="
+                                flex
+                                h-11
+                                w-11
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-border
+                                transition
+                                hover:bg-muted
+                            "
+                        >
+                            <FiChevronLeft size={18} />
+                        </button>
+
+                        <button
+                            onClick={onNext}
+                            className="
+                                flex
+                                h-11
+                                w-11
+                                items-center
+                                justify-center
+                                rounded-xl
+                                border
+                                border-border
+                                transition
+                                hover:bg-muted
+                            "
+                        >
+                            <FiChevronRight size={18} />
+                        </button>
+                    </div>
+
+                    <h2
+                        className="
+                            text-xl
+                            sm:text-2xl
+                            font-bold
+                        "
+                    >
+                        {title}
+                    </h2>
+                </div>
+
+                {/* Right */}
+
+                <div
+                    className="
+                        flex
+                        flex-col
+                        gap-4
+                        lg:flex-row
+                        lg:items-center
+                    "
                 >
-                    <FiPlus />
+                    <div
+                        className="
+                            flex
+                            flex-wrap
+                            gap-2
+                        "
+                    >
+                        {views.map((view) => (
+                            <button
+                                key={view.value}
+                                onClick={() =>
+                                    onChangeView(view.value)
+                                }
+                                className={`
+                                    h-11
+                                    rounded-xl
+                                    px-4
+                                    text-sm
+                                    font-medium
+                                    transition
 
-                    Add Event
-                </button>
+                                    ${currentView === view.value
+                                        ? "bg-primary text-white"
+                                        : "border border-border hover:bg-muted"
+                                    }
+                                `}
+                            >
+                                {view.label}
+                            </button>
+                        ))}
+                    </div>
 
+                    <button
+                        onClick={onAddEvent}
+                        className="
+                            flex
+                            h-11
+                            items-center
+                            justify-center
+                            gap-2
+                            rounded-xl
+                            bg-primary
+                            px-5
+                            font-semibold
+                            text-white
+                            transition
+                            hover:opacity-90
+                        "
+                    >
+                        <FiPlus />
+
+                        Add Event
+                    </button>
+                </div>
             </div>
-
         </div>
     );
 }

@@ -22,7 +22,9 @@ import EventModal from "./EventModal";
 
 import { CalendarEvent } from "@/types/calendar";
 
+
 export default function CalendarView() {
+
     const {
         calendarRef,
         events,
@@ -36,47 +38,88 @@ export default function CalendarView() {
         updateTitle,
     } = useCalendar();
 
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const [selectedDate, setSelectedDate] =
         useState<Date | null>(null);
 
+
+
     useEffect(() => {
         updateTitle();
     }, [updateTitle]);
 
-    const handleDateSelect = (info: DateSelectArg) => {
+
+
+    const handleDateSelect = (
+        info: DateSelectArg
+    ) => {
+
         setSelectedDate(info.start);
         setModalOpen(true);
+
     };
+
+
 
     const handleAddEvent = () => {
+
         setSelectedDate(new Date());
         setModalOpen(true);
+
     };
 
-    const handleSaveEvent = (event: CalendarEvent) => {
+
+
+    const handleSaveEvent = (
+        event: CalendarEvent
+    ) => {
+
         addEvent(event);
+
     };
+
+
 
     const handleDatesSet = () => {
+
         updateTitle();
+
     };
+
+
 
     const handleEventChange = (
         info: EventChangeArg
     ) => {
-        console.log("Updated Event:", info.event);
+
+        console.log(
+            "Updated Event:",
+            info.event
+        );
+
     };
+
+
 
     const handleEventClick = (
         info: EventClickArg
     ) => {
-        console.log("Clicked Event:", info.event);
+
+        console.log(
+            "Clicked Event:",
+            info.event
+        );
+
     };
 
+
+
     return (
+
         <>
+
             <CalendarHeader
                 title={currentTitle}
                 currentView={currentView}
@@ -87,68 +130,177 @@ export default function CalendarView() {
                 onAddEvent={handleAddEvent}
             />
 
-            <div className="rounded-2xl bg-card p-6 shadow-sm">
 
-                <FullCalendar
-                    ref={calendarRef}
-                    plugins={[
-                        dayGridPlugin,
-                        timeGridPlugin,
-                        interactionPlugin,
-                        listPlugin,
-                    ]}
-                    initialView={currentView}
-                    headerToolbar={false}
-                    editable
-                    selectable
-                    selectMirror
-                    dayMaxEvents
-                    weekends
-                    nowIndicator
-                    navLinks
-                    droppable
-                    eventResizableFromStart
-                    eventDurationEditable
-                    events={events}
-                    height="auto"
-                    firstDay={6}
-                    select={handleDateSelect}
-                    datesSet={handleDatesSet}
-                    eventChange={handleEventChange}
-                    eventDrop={handleEventChange}
-                    eventResize={handleEventChange}
-                    eventClick={handleEventClick}
-                    dayCellClassNames={() => [
-                        "hover:bg-card",
-                        "cursor-pointer",
-                        "transition-all",
-                    ]}
-                    eventClassNames={() => [
-                        "!rounded-lg",
-                        "!border-0",
-                        "!px-1",
-                        "!py-0.5",
-                        "!text-sm",
-                        "!font-medium",
-                        "!shadow-sm",
-                    ]}
-                    buttonText={{
-                        today: "Today",
-                        month: "Month",
-                        week: "Week",
-                        day: "Day",
-                        list: "List",
-                    }}
-                />
+
+            <div
+                className="
+                w-full
+                overflow-hidden
+                rounded-2xl
+                bg-card
+                p-3
+                sm:p-6
+                shadow-sm
+                "
+            >
+
+
+                <div
+                    className="
+                    w-full
+                    overflow-x-auto
+                    "
+                >
+
+                    <FullCalendar
+
+                        ref={calendarRef}
+
+                        plugins={[
+                            dayGridPlugin,
+                            timeGridPlugin,
+                            interactionPlugin,
+                            listPlugin,
+                        ]}
+
+
+                        initialView={currentView}
+
+
+                        headerToolbar={false}
+
+
+                        editable
+
+
+                        selectable
+
+
+                        selectMirror
+
+
+                        dayMaxEvents
+
+
+                        weekends
+
+
+                        nowIndicator
+
+
+                        navLinks
+
+
+                        droppable
+
+
+                        eventResizableFromStart
+
+
+                        eventDurationEditable
+
+
+                        events={events}
+
+
+                        height="auto"
+
+
+                        firstDay={6}
+
+
+                        select={handleDateSelect}
+
+
+                        datesSet={handleDatesSet}
+
+
+                        eventChange={handleEventChange}
+
+
+                        eventDrop={handleEventChange}
+
+
+                        eventResize={handleEventChange}
+
+
+                        eventClick={handleEventClick}
+
+
+
+                        dayCellClassNames={() => [
+
+                            "hover:bg-card",
+
+                            "cursor-pointer",
+
+                            "transition-all",
+
+                        ]}
+
+
+
+                        eventClassNames={() => [
+
+                            "!rounded-lg",
+
+                            "!border-0",
+
+                            "!px-1",
+
+                            "!py-0.5",
+
+                            "!text-xs",
+
+                            "sm:!text-sm",
+
+                            "!font-medium",
+
+                            "!shadow-sm",
+
+                        ]}
+
+
+
+                        buttonText={{
+
+                            today: "Today",
+
+                            month: "Month",
+
+                            week: "Week",
+
+                            day: "Day",
+
+                            list: "List",
+
+                        }}
+
+                    />
+
+                </div>
+
 
             </div>
 
+
+
             <EventModal
+
                 open={modalOpen}
+
                 selectedDate={selectedDate}
-                onClose={() => setModalOpen(false)}
+
+                onClose={() =>
+                    setModalOpen(false)
+                }
+
                 onSave={handleSaveEvent}
+
             />
+
         </>
+
     );
+
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/sidebar/sideBar";
 
@@ -5,27 +7,49 @@ import CalendarView from "@/components/calendar/CalendarView";
 
 export default function CalendarPage() {
     return (
-        <div className="flex min-h-screen bg-background text-foreground justify-center">
-            <div className="w-[1440px] flex flex-row justify-between">
-                <Sidebar />
+        <div
+            className="
+                min-h-screen
+                bg-background
+                text-foreground
+            "
+        >
+            <Sidebar />
 
-                <div className="flex flex-1 flex-col">
+            <Header title="Calendar" />
 
-                    <Header title="Calendar" />
-                    <div className="ml-10 mt-15">
-                        <h1 className="text-3xl font-bold">
-                            Calendar
-                        </h1>
-                    </div>
-                    <main className="flex-1 p-6">
+            <main
+                className="
+                    pt-[98px]
+                    px-4
+                    sm:px-6
+                    lg:px-8
 
-                        <CalendarView />
+                    md:ml-[220px]
+                    lg:ml-[240px]
+                "
+            >
+                <div
+                    className="
+                        mx-auto
+                        w-full
+                        max-w-7xl
+                    "
+                >
+                    <h1
+                        className="
+                            text-2xl
+                            sm:text-3xl
+                            font-bold
+                            mb-8
+                        "
+                    >
+                        Calendar
+                    </h1>
 
-                    </main>
-
+                    <CalendarView />
                 </div>
-            </div>
-
+            </main>
         </div>
     );
 }
