@@ -1,6 +1,7 @@
 "use client";
 
 import { Contact } from "@/types/contact";
+
 import ContactCard from "./ContactCard";
 import EmptyContact from "./EmptyContact";
 
@@ -16,7 +17,16 @@ export default function ContactGrid({
     }
 
     return (
-        <div className="grid grid-cols-3 gap-8 mt-10">
+        <div
+            className="
+        mt-10
+        grid
+        grid-cols-1
+        gap-6
+        sm:grid-cols-2
+        xl:grid-cols-3
+      "
+        >
             {contacts.map((contact) => (
                 <ContactCard
                     key={contact.id}

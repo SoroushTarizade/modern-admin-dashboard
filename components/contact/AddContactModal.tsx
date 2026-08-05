@@ -19,28 +19,24 @@ export default function AddContactModal({
     if (!open) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-
-            <div className="w-[620px] rounded-3xl bg-card border border-border p-8 relative">
-
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <div className="relative w-full max-w-xl overflow-hidden rounded-3xl border border-border bg-card p-5 sm:p-8">
                 <button
                     onClick={onClose}
-                    className="absolute right-6 top-6"
+                    className="absolute right-5 top-5 rounded-lg p-2 transition hover:bg-muted sm:right-6 sm:top-6"
                 >
                     <IoClose size={24} />
                 </button>
 
-                <h2 className="text-2xl font-bold mb-8">
+                <h2 className="mb-8 text-2xl font-bold">
                     Add Contact
                 </h2>
 
-                <div className="flex justify-center mb-8">
-
+                <div className="mb-8 flex justify-center">
                     <label className="cursor-pointer">
-
                         <img
                             src={preview}
-                            className="w-28 h-28 rounded-full object-cover border-4 border-border"
+                            className="h-24 w-24 rounded-full border-4 border-border object-cover sm:h-28 sm:w-28"
                             alt=""
                         />
 
@@ -58,64 +54,54 @@ export default function AddContactModal({
                                 );
                             }}
                         />
-
                     </label>
-
                 </div>
 
-                <div className="grid grid-cols-2 gap-5">
-
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                     <input
                         placeholder="Full Name"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
 
                     <input
                         placeholder="Email"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
 
                     <input
                         placeholder="Phone"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
 
                     <input
                         placeholder="Company"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
 
                     <input
                         placeholder="Position"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
 
                     <input
                         placeholder="Address"
-                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none"
+                        className="h-12 rounded-xl border border-border bg-background px-4 outline-none focus:border-primary"
                     />
-
                 </div>
 
-                <div className="flex justify-end gap-4 mt-8">
-
+                <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
                     <button
                         onClick={onClose}
-                        className="px-6 h-11 rounded-xl border border-border"
+                        className="h-11 w-full rounded-xl border border-border px-6 sm:w-auto"
                     >
                         Cancel
                     </button>
 
-                    <button
-                        className="px-6 h-11 rounded-xl bg-primary text-white"
-                    >
+                    <button className="h-11 w-full rounded-xl bg-primary px-6 text-white sm:w-auto">
                         Save Contact
                     </button>
-
                 </div>
-
             </div>
-
         </div>
     );
 }
