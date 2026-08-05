@@ -1,43 +1,57 @@
+"use client";
+
 import Header from "@/components/header/Header";
 import Sidebar from "@/components/sidebar/sideBar";
 
 import PriceCard from "@/components/price/PriceCard";
-
 import { pricingPlans } from "@/data/pricing";
 
 export default function Page() {
     return (
-        <div className="bg-background text-foreground flex justify-center">
-            <div className="w-[1440px] flex">
+        <div className="min-h-screen bg-background text-foreground">
 
-                <Sidebar />
+            <Sidebar />
 
-                <div className="flex-1">
+            <Header />
 
-                    <Header />
+            <main
+                className="
+                    pt-[98px]
+                    px-4
+                    sm:px-6
+                    lg:px-8
 
-                    <div className="ml-10 mt-15">
+                    md:ml-[220px]
+                    lg:ml-[240px]
+                "
+            >
+                <div className="mx-auto w-full max-w-7xl">
 
-                        <h1 className="text-3xl font-bold">
-                            Pricing Plan
-                        </h1>
+                    <h1 className="text-2xl sm:text-3xl font-bold">
+                        Pricing Plan
+                    </h1>
 
-                        <div className="flex gap-8 mt-10">
-
-                            {pricingPlans.map((plan) => (
-                                <PriceCard
-                                    key={plan.id}
-                                    plan={plan}
-                                />
-                            ))}
-
-                        </div>
-
+                    <div
+                        className="
+                            mt-10
+                            grid
+                            grid-cols-1
+                            md:grid-cols-2
+                            xl:grid-cols-3
+                            gap-8
+                        "
+                    >
+                        {pricingPlans.map((plan) => (
+                            <PriceCard
+                                key={plan.id}
+                                plan={plan}
+                            />
+                        ))}
                     </div>
 
                 </div>
+            </main>
 
-            </div>
         </div>
     );
 }

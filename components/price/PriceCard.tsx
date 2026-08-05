@@ -2,6 +2,11 @@
 
 import { PricingPlan } from "@/types/pricing";
 
+import PriceBadge from "./PriceBadge";
+import PriceFeatures from "./PriceFeatures";
+import PriceButton from "./PriceButton";
+import Price from "./Price";
+
 interface PriceCardProps {
     plan: PricingPlan;
 }
@@ -11,9 +16,23 @@ export default function PriceCard({
 }: PriceCardProps) {
     return (
         <div
-            className={`relative overflow-hidden w-[350px] rounded-3xl border border-border bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl`}
+            className="
+                relative
+                overflow-hidden
+                w-full
+                max-w-[380px]
+                mx-auto
+                rounded-3xl
+                border
+                border-border
+                bg-card
+                transition-all
+                duration-300
+                hover:-translate-y-2
+                hover:shadow-2xl
+            "
         >
-            {/* Background Blur */}
+            {/* Background */}
 
             <div
                 className={`absolute inset-0 bg-gradient-to-br ${plan.gradient}`}
@@ -23,88 +42,44 @@ export default function PriceCard({
 
             <div className="absolute -bottom-20 -left-20 w-52 h-52 rounded-full bg-blue-500/10 blur-3xl" />
 
-            {/* Badge */}
+            <PriceBadge
+                isPopular={plan.isPopular}
+            />
 
-            {plan.isPopular && (
-                <div className="absolute top-5 right-5 z-20 bg-primary text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg">
-                    MOST POPULAR
-                </div>
-            )}
+            <div className="relative z-10 flex flex-col p-8">
 
-            {/* Content */}
+                <div className="text-center">
 
-            <div className="relative z-10 flex flex-col items-center p-8">
+                    <h2 className="text-3xl font-bold">
+                        {plan.title}
+                    </h2>
 
-                {/* Title */}
-
-                <h2 className="text-3xl font-bold">
-                    {plan.title}
-                </h2>
-
-                <p className="text-muted-foreground mt-2">
-                    {plan.subtitle}
-                </p>
-
-                {/* Price */}
-
-                <div className="w-full border-b border-border mt-8 pb-8 flex flex-col items-center">
-
-                    <div className="flex items-end">
-
-                        <span className="text-5xl font-extrabold text-primary">
-                            ${plan.price}
-                        </span>
-
-                        <span className="ml-2 text-muted-foreground">
-                            {plan.duration}
-                        </span>
-
-                    </div>
+                    <p className="text-muted-foreground mt-2">
+                        {plan.subtitle}
+                    </p>
 
                 </div>
 
-                {/* Features */}
+                <Price
+                    price={plan.price}
+                    duration={plan.duration}
+                />
 
-                <div className="w-full py-8">
+                <PriceFeatures
+                    features={plan.features}
+                />
 
-                    <ul className="space-y-5">
+                <div className="mt-auto">
 
-                        {plan.features.map((feature) => (
-                            <li
-                                key={feature}
-                                className="flex items-center gap-3"
-                            >
-                                <div className="w-2 h-2 rounded-full bg-primary" />
-
-                                <span>
-                                    {feature}
-                                </span>
-
-                            </li>
-                        ))}
-
-                    </ul>
+                    <PriceButton
+                        text={plan.buttonText}
+                        isPopular={plan.isPopular}
+                    />
 
                 </div>
-
-                {/* Button */}
-
-                <button
-                    className={`w-full h-14 rounded-2xl font-semibold transition-all duration-300
-
-          ${plan.isPopular
-                            ? "bg-primary text-white hover:opacity-90"
-                            : "border border-primary text-primary hover:bg-primary hover:text-white"
-                        }`}
-                >
-                    {plan.buttonText}
-                </button>
-
-                <p className="mt-5 text-sm underline text-muted-foreground cursor-pointer">
-                    Start your 30 days free trial
-                </p>
 
             </div>
+
         </div>
     );
 }

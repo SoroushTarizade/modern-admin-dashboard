@@ -34,7 +34,6 @@ export default function ProductStockPage() {
             <main
                 className="
                     pt-[98px]
-
                     px-4
                     sm:px-6
                     lg:px-8

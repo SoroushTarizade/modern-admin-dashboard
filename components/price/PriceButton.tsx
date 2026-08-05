@@ -8,23 +8,29 @@ export default function PriceButton({
     isPopular,
 }: PriceButtonProps) {
     return (
-        <div className="w-full flex flex-col items-center gap-5">
-
+        <div className="mt-auto flex w-full flex-col items-center gap-5">
             <button
-                className={`w-full h-14 rounded-2xl font-semibold transition-all duration-300 cursor-pointer
+                className={`
+                    h-14
+                    w-full
+                    rounded-2xl
+                    font-semibold
+                    transition-all
+                    duration-300
+                    cursor-pointer
 
-        ${isPopular
+                    ${isPopular
                         ? "bg-primary text-white shadow-lg shadow-primary/30 hover:scale-[1.03]"
                         : "border border-primary text-primary hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20"
-                    }`}
+                    }
+                `}
             >
                 {text}
             </button>
 
-            <p className="text-sm text-muted-foreground underline cursor-pointer hover:text-primary transition">
+            <p className="cursor-pointer text-center text-sm text-muted-foreground underline transition hover:text-primary">
                 Start your 30 days free trial
             </p>
-
         </div>
     );
 }
