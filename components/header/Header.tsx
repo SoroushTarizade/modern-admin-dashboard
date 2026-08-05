@@ -3,18 +3,22 @@
 import SearchBar from "./SearchBar";
 import HeaderActions from "./HeaderActions";
 
+
 interface HeaderProps {
     title?: string;
     isAuthenticated?: boolean;
 }
 
+
 export default function Header({
     isAuthenticated = true,
 }: HeaderProps) {
 
+
     return (
 
         <header
+
             className="
                 fixed
 
@@ -45,11 +49,18 @@ export default function Header({
 
                 gap-4
             "
+
         >
+
+
 
             {/* Logo */}
 
-            <div className="shrink-0">
+            <div
+                className="
+                    shrink-0
+                "
+            >
 
                 <p
                     className="
@@ -77,22 +88,25 @@ export default function Header({
 
 
 
+
             {/* Search */}
 
             <div
+
                 className="
                     hidden
 
-                    lg:flex
+                    md:flex
 
                     flex-1
 
                     min-w-0
 
-                    justify-center
+                    max-w-[700px]
 
-                    px-6
+                    mx-auto
                 "
+
             >
 
                 <SearchBar />
@@ -103,21 +117,30 @@ export default function Header({
 
 
 
+
+
             {/* Actions */}
 
             <div
+
                 className="
                     ml-auto
 
                     shrink-0
                 "
+
             >
 
                 <HeaderActions
+
                     isAuthenticated={isAuthenticated}
+
                 />
 
             </div>
+
+
+
 
         </header>
 

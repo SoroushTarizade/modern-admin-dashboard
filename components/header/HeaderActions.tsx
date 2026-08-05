@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import ToggleTheme from "./ToggleTheme";
 import Notification from "./Notification";
 import MessageMenu from "./MessageMenu";
@@ -13,17 +14,13 @@ import MobileSidebar from "@/components/sidebar/MobileSidebar";
 import { FiMenu } from "react-icons/fi";
 
 
-
 interface HeaderActionsProps {
     isAuthenticated?: boolean;
 }
 
 
-
 export default function HeaderActions({
-
     isAuthenticated = true,
-
 }: HeaderActionsProps) {
 
 
@@ -39,16 +36,15 @@ export default function HeaderActions({
                 className="
                     flex
                     items-center
-
                     gap-2
-                    sm:gap-4
+                    sm:gap-3
                 "
             >
 
 
+                {/* Theme */}
 
                 <ToggleTheme />
-
 
 
 
@@ -65,7 +61,7 @@ export default function HeaderActions({
                 <div
                     className="
                         hidden
-                        sm:block
+                        xl:block
                     "
                 >
 
@@ -77,20 +73,18 @@ export default function HeaderActions({
 
 
 
-
                 {/* Language */}
 
                 <div
                     className="
                         hidden
-                        lg:block
+                        xl:block
                     "
                 >
 
                     <LanguageSwitcher />
 
                 </div>
-
 
 
 
@@ -114,8 +108,6 @@ export default function HeaderActions({
 
 
 
-
-
                 {/* User */}
 
                 <div
@@ -124,18 +116,25 @@ export default function HeaderActions({
                         lg:block
                     "
                 >
+
                     {
                         isAuthenticated
                             ?
                             <UserMenu />
 
                             :
-                            <GuestMenu />
 
+                            <GuestMenu />
                     }
+
                 </div>
 
-                {/* Mobile Hamburger */}
+
+
+
+
+
+                {/* Mobile / Tablet Menu */}
 
                 <button
 
@@ -143,16 +142,24 @@ export default function HeaderActions({
 
                     className="
                         flex
-                        md:hidden
+
+                        lg:hidden
+
                         w-10
                         h-10
+
                         items-center
                         justify-center
+
                         rounded-xl
+
                         border
                         border-border
+
                         bg-card
+
                         hover:bg-secondary
+
                         transition
                     "
 
@@ -160,14 +167,10 @@ export default function HeaderActions({
 
                     <FiMenu size={22} />
 
-
                 </button>
 
 
-
             </div>
-
-
 
 
 
@@ -182,8 +185,6 @@ export default function HeaderActions({
                 onClose={() => setOpenSidebar(false)}
 
             />
-
-
 
         </>
 
