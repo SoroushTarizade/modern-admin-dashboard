@@ -58,12 +58,10 @@ export default function HomePage() {
     <div
       className="
         min-h-screen
-        bg-background
         text-foreground
         overflow-x-hidden
       "
     >
-
 
       <div
         className="
@@ -79,8 +77,6 @@ export default function HomePage() {
         {/* Main */}
         <div
           className="
-          md:ml-[220px]
-          lg:ml-[240px]
           min-h-screen
           flex 
           flex-col

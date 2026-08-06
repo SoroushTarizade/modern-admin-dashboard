@@ -19,27 +19,16 @@ export default function Page() {
         >
 
 
-            <Sidebar />
-
-
-
             <div
                 className="
-                    md:ml-[220px]
-                    lg:ml-[240px]
-
                     min-h-screen
                 "
             >
 
 
-                <Header />
-
-
-
                 <main
                     className="
-                        pt-[100px]
+                        pt-[50px]
 
                         px-4
                         sm:px-6

@@ -1,8 +1,4 @@
 "use client";
-
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import CalendarView from "@/components/calendar/CalendarView";
 
 export default function CalendarPage() {
@@ -14,19 +10,13 @@ export default function CalendarPage() {
                 text-foreground
             "
         >
-            <Sidebar />
-
-            <Header title="Calendar" />
 
             <main
                 className="
-                    pt-[98px]
+                    pt-[50px]
                     px-4
                     sm:px-6
                     lg:px-8
-
-                    md:ml-[220px]
-                    lg:ml-[240px]
                 "
             >
                 <div

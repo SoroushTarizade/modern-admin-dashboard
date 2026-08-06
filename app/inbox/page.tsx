@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import MailSidebar from "@/components/mail/MailSidebar";
 import MobileMailSidebar from "@/components/mail/MobileMailSidebar";
 
@@ -68,13 +65,10 @@ export default function InboxPage() {
 
             {/* Main Sidebar */}
 
-            <Sidebar />
-
 
 
             <div
                 className="
-                    md:ml-[240px]
                     min-h-screen
                     flex
                     flex-col
@@ -82,13 +76,12 @@ export default function InboxPage() {
             >
 
 
-                <Header />
 
 
 
                 <main
                     className="
-                        mt-[78px]
+                        mt-[50px]
                         p-4
                         sm:p-6
                         lg:p-8

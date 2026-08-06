@@ -1,8 +1,4 @@
 "use client";
-
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import TeamGrid from "@/components/team/TeamGrid";
 
 export default function Page() {
@@ -14,19 +10,12 @@ export default function Page() {
         text-foreground
       "
     >
-      <Sidebar />
-
-      <Header title="Team" />
-
       <main
         className="
-          pt-[98px]
+          pt-[50px]
           px-4
           sm:px-6
           lg:px-8
-
-          md:ml-[220px]
-          lg:ml-[240px]
         "
       >
         <div

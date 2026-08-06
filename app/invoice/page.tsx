@@ -1,8 +1,4 @@
 "use client";
-
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import InvoiceInfo from "@/components/invoice/InvoiceInfo";
 import InvoiceTable from "@/components/invoice/InvoiceTable";
@@ -17,18 +13,13 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Sidebar />
-
-      <Header title="Invoice" />
 
       <main
         className="
-          pt-[98px]
+          pt-[50px]
           px-4
           sm:px-6
           lg:px-8
-          md:ml-[220px]
-          lg:ml-[240px]
         "
       >
         <div className="mx-auto w-full max-w-7xl">

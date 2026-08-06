@@ -2,9 +2,6 @@
 
 import { useState } from "react";
 
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import TodoHeader from "@/components/todo/TodoHeader";
 import TodoList from "@/components/todo/TodoList";
 import AddTaskModal from "@/components/todo/AddTaskModal";
@@ -30,19 +27,13 @@ export default function TodoPage() {
         text-foreground
       "
     >
-      <Sidebar />
-
-      <Header title="To-Do List" />
 
       <main
         className="
-          pt-[98px]
+          pt-[50px]
           px-4
           sm:px-6
           lg:px-8
-
-          md:ml-[220px]
-          lg:ml-[240px]
         "
       >
         <div

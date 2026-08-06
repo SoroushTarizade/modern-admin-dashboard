@@ -2,9 +2,6 @@
 
 import { useMemo, useState } from "react";
 
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import FilterBar from "@/components/order/FilterBar";
 import OrderTable from "@/components/order/OrderTable";
 import Pagination from "@/components/order/Pagination";
@@ -58,20 +55,13 @@ export default function OrdersPage() {
     return (
         <div className="min-h-screen bg-background text-foreground">
 
-            <Sidebar />
-
-            <Header />
 
             <main
                 className="
-            pt-[98px]
-
+            pt-[50px]
             px-4
             sm:px-6
             lg:px-8
-
-            md:ml-[220px]
-            lg:ml-[240px]
         "
             >
 
