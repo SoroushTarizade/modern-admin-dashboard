@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 
 import ToggleTheme from "./ToggleTheme";
 import Notification from "./Notification";
@@ -9,165 +8,139 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import GuestMenu from "./GuestMenu";
 import UserMenu from "./UserMenu";
 
-import MobileSidebar from "@/components/sidebar/MobileSidebar";
 
 import { FiMenu } from "react-icons/fi";
 
 
 interface HeaderActionsProps {
+
     isAuthenticated?: boolean;
+
+    onMenuClick?: () => void;
+
 }
 
 
+
 export default function HeaderActions({
-    isAuthenticated = true,
+
+    isAuthenticated,
+
+    onMenuClick,
+
 }: HeaderActionsProps) {
-
-
-    const [openSidebar, setOpenSidebar] = useState(false);
 
 
 
     return (
 
-        <>
+        <div
+
+            className="
+                flex
+
+                items-center
+
+                gap-2
+            "
+
+        >
+
+
+
+            <ToggleTheme />
+
+
+
+            <Notification />
+
+
+
+
 
             <div
+
                 className="
-                    flex
-                    items-center
-                    gap-2
-                    sm:gap-3
+                    hidden
+
+                    md:flex
                 "
+
             >
 
+                <MessageMenu />
 
-                {/* Theme */}
-
-                <ToggleTheme />
-
-
-
-                {/* Notification */}
-
-                <Notification />
-
-
-
-
-
-                {/* Message */}
-
-                <div
-                    className="
-                        hidden
-                        xl:block
-                    "
-                >
-
-                    <MessageMenu />
-
-                </div>
-
-
-
-
-
-                {/* Language */}
-
-                <div
-                    className="
-                        hidden
-                        xl:block
-                    "
-                >
-
-                    <LanguageSwitcher />
-
-                </div>
+            </div>
 
 
 
 
 
 
-                {/* Divider */}
+            <div
 
-                <div
-                    className="
-                        hidden
-                        lg:block
-                        w-px
-                        h-8
-                        bg-border
-                    "
-                />
+                className="
+                    hidden
 
+                    lg:flex
+                "
 
+            >
 
+                <LanguageSwitcher />
 
-
-
-                {/* User */}
-
-                <div
-                    className="
-                        hidden
-                        lg:block
-                    "
-                >
-
-                    {
-                        isAuthenticated
-                            ?
-                            <UserMenu />
-
-                            :
-
-                            <GuestMenu />
-                    }
-
-                </div>
+            </div>
 
 
 
 
 
 
-                {/* Mobile / Tablet Menu */}
+            <div
 
-                <button
+                className="
+                    hidden
 
-                    onClick={() => setOpenSidebar(true)}
+                    lg:block
 
-                    className="
-                        flex
+                    h-8
 
-                        lg:hidden
+                    w-px
 
-                        w-10
-                        h-10
+                    bg-border
 
-                        items-center
-                        justify-center
+                    mx-1
+                "
 
-                        rounded-xl
+            />
 
-                        border
-                        border-border
 
-                        bg-card
 
-                        hover:bg-secondary
 
-                        transition
-                    "
 
-                >
 
-                    <FiMenu size={22} />
+            <div
 
-                </button>
+                className="
+                    hidden
+
+                    lg:flex
+                "
+
+            >
+
+                {
+                    isAuthenticated
+
+                        ?
+
+                        <UserMenu />
+
+                        :
+
+                        <GuestMenu />
+
+                }
 
 
             </div>
@@ -176,17 +149,61 @@ export default function HeaderActions({
 
 
 
-            {/* Mobile Drawer */}
 
-            <MobileSidebar
+            <button
 
-                open={openSidebar}
+                onClick={onMenuClick}
 
-                onClose={() => setOpenSidebar(false)}
+                aria-label="Open sidebar"
 
-            />
 
-        </>
+                className="
+                    flex
+
+                    lg:hidden
+
+
+                    items-center
+
+                    justify-center
+
+
+                    w-11
+
+                    h-11
+
+
+                    rounded-xl
+
+
+                    border
+
+                    border-border
+
+
+                    bg-card
+
+
+                    hover:bg-secondary
+
+
+                    active:scale-95
+
+
+                    transition-all
+                "
+
+            >
+
+                <FiMenu size={22} />
+
+
+            </button>
+
+
+
+
+        </div>
 
     );
 

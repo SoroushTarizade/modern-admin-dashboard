@@ -1,28 +1,49 @@
 "use client";
 
-import { FiSearch } from "react-icons/fi";
-import { useEffect, useRef } from "react";
+
+import {
+    FiSearch
+} from "react-icons/fi";
+
+
+import {
+    useEffect,
+    useRef
+} from "react";
+
 
 
 interface SearchBarProps {
+
     placeholder?: string;
+
 }
 
 
+
 export default function SearchBar({
-    placeholder = "Search anything...",
+
+    placeholder = "Search anything..."
+
 }: SearchBarProps) {
 
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef =
+        useRef<HTMLInputElement>(null);
+
 
 
     useEffect(() => {
 
-        const handleKeyDown = (e: KeyboardEvent) => {
+
+        function handleKeyDown(
+            e: KeyboardEvent
+        ) {
+
 
             if (
-                (e.ctrlKey || e.metaKey) &&
+                (e.ctrlKey || e.metaKey)
+                &&
                 e.key.toLowerCase() === "k"
             ) {
 
@@ -32,7 +53,9 @@ export default function SearchBar({
 
             }
 
-        };
+
+        }
+
 
 
         window.addEventListener(
@@ -41,91 +64,162 @@ export default function SearchBar({
         );
 
 
-        return () =>
+
+        return () => {
+
             window.removeEventListener(
                 "keydown",
                 handleKeyDown
             );
+
+        }
 
 
     }, []);
 
 
 
+
     return (
 
         <div
+
             className="
                 group
+
                 relative
+
                 w-full
-                max-w-[280px]
-                h-[48px]
+
+                h-12
             "
+
         >
 
+
             <FiSearch
+
                 className="
                     absolute
+
                     left-5
+
                     top-1/2
+
                     -translate-y-1/2
+
                     text-xl
+
                     text-muted-foreground
+
                     group-focus-within:text-primary
                 "
+
             />
 
 
+
             <input
+
                 ref={inputRef}
+
                 type="search"
+
                 placeholder={placeholder}
 
+
                 className="
-                    h-full
                     w-full
+
+                    h-full
+
+
                     rounded-2xl
+
+
                     border
+
                     border-border
+
+
                     bg-input
+
+
                     pl-14
-                    pr-20
+
+
+                    pr-24
+
+
                     text-sm
-                    text-foreground
+
+
                     outline-none
-                    hover:border-primary/40
+
+
                     focus:border-primary
+
+
                     focus:ring-4
+
                     focus:ring-primary/20
+
+
+                    transition-all
+
                 "
+
             />
 
 
 
             <div
+
                 className="
                     hidden
-                    lg:block
+
+                    lg:flex
+
+
                     absolute
+
                     right-4
+
                     top-1/2
+
                     -translate-y-1/2
-                    rounded-lg
-                    border
-                    border-border
-                    bg-background
+
+
                     px-2.5
+
                     py-1
+
+
+                    rounded-lg
+
+
+                    border
+
+                    border-border
+
+
                     text-xs
+
                     text-muted-foreground
+
+                    bg-background
                 "
+
             >
+
                 Ctrl K
+
+
             </div>
 
 
         </div>
 
     );
+
 }

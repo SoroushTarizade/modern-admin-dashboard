@@ -1,7 +1,5 @@
 "use client";
 
-import Sidebar from "@/components/sidebar/sideBar";
-import Header from "@/components/header/Header";
 
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import DashboardFilters from "@/components/dashboard/DashboardFilters";
@@ -76,9 +74,7 @@ export default function HomePage() {
 
 
 
-        {/* Sidebar */}
 
-        <Sidebar />
 
         {/* Main */}
         <div
@@ -90,10 +86,6 @@ export default function HomePage() {
           flex-col
           "
         >
-
-
-          <Header />
-
 
 
           <main

@@ -1,49 +1,43 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import { FiChevronDown } from "react-icons/fi";
 
-const languages = [
-    {
-        code: "EN",
-        name: "English",
-        flag: "🇺🇸",
-    },
-    {
-        code: "FA",
-        name: "Persian",
-        flag: "🇮🇷",
-    },
-];
+import { languages } from "@/data/languages";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function LanguageSwitcher() {
-
     const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState(languages[0]);
 
     const ref = useRef<HTMLDivElement>(null);
 
+    const {
+        language,
+        setLanguage,
+        languages,
+    } = useLanguage();
+
     useEffect(() => {
-
         function handleClick(e: MouseEvent) {
-
             if (
                 ref.current &&
                 !ref.current.contains(e.target as Node)
             ) {
                 setOpen(false);
             }
-
         }
 
-        document.addEventListener("mousedown", handleClick);
+        document.addEventListener(
+            "mousedown",
+            handleClick
+        );
 
         return () =>
             document.removeEventListener(
                 "mousedown",
                 handleClick
             );
-
     }, []);
 
     return (
@@ -51,7 +45,6 @@ export default function LanguageSwitcher() {
             ref={ref}
             className="relative"
         >
-
             <button
                 onClick={() => setOpen(!open)}
                 className="
@@ -74,31 +67,34 @@ export default function LanguageSwitcher() {
                     transition-all
                 "
             >
-
                 <span className="text-lg">
-                    {selected.flag}
+                    {language.flag}
                 </span>
 
                 <span className="text-sm font-semibold">
-                    {selected.code}
+                    {language.code}
                 </span>
 
                 <FiChevronDown
-                    className={`transition-transform duration-300 ${open ? "rotate-180" : ""
-                        }`}
+                    className={`
+                        transition-transform
+                        duration-300
+                        ${open
+                            ? "rotate-180"
+                            : ""
+                        }
+                    `}
                 />
-
             </button>
 
             {open && (
-
                 <div
                     className="
                         absolute
                         right-0
                         mt-3
 
-                        w-48
+                        w-52
 
                         rounded-2xl
 
@@ -114,13 +110,13 @@ export default function LanguageSwitcher() {
                         z-50
                     "
                 >
-
                     {languages.map((language) => (
-
                         <button
                             key={language.code}
                             onClick={() => {
-                                setSelected(language);
+                                setLanguage(
+                                    language
+                                );
                                 setOpen(false);
                             }}
                             className="
@@ -138,13 +134,11 @@ export default function LanguageSwitcher() {
                                 transition-all
                             "
                         >
-
                             <span className="text-xl">
                                 {language.flag}
                             </span>
 
                             <div className="text-left">
-
                                 <p className="font-medium">
                                     {language.name}
                                 </p>
@@ -152,17 +146,11 @@ export default function LanguageSwitcher() {
                                 <p className="text-xs text-muted-foreground">
                                     {language.code}
                                 </p>
-
                             </div>
-
                         </button>
-
                     ))}
-
                 </div>
-
             )}
-
         </div>
     );
 }

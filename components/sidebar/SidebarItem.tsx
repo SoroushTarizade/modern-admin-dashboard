@@ -1,6 +1,9 @@
 "use client";
 
+
 import Link from "next/link";
+
+import { IconType } from "react-icons";
 
 
 interface SidebarItemProps {
@@ -9,7 +12,13 @@ interface SidebarItemProps {
 
     href: string;
 
+    icon: IconType;
+
     active: boolean;
+
+    badge?: string | number;
+
+    onClick?: () => void;
 
 }
 
@@ -21,52 +30,73 @@ export default function SidebarItem({
 
     href,
 
+    icon: Icon,
+
     active,
+
+    badge,
+
+    onClick,
 
 }: SidebarItemProps) {
 
 
-
     return (
 
-        <li
-            className="
-                w-full
-            "
-        >
+        <li className="w-full">
+
 
             <Link
 
                 href={href}
 
+                onClick={onClick}
+
                 className={`
+
                     relative
 
                     flex
+
                     items-center
 
-                    w-full
+                    justify-between
 
-                    h-[48px]
 
-                    rounded-xl
+                    h-12
+
 
                     px-4
 
 
+                    rounded-xl
+
+
                     transition-all
+
+                    duration-200
+
 
 
                     ${active
 
                         ?
 
-                        "bg-primary text-white"
+                        `
+                        bg-primary/10
+                        text-primary
+                        `
 
                         :
 
-                        "text-foreground hover:bg-primary/10"
+                        `
+                        text-foreground
+                        hover:bg-secondary
+                        hover:translate-x-1
+                        `
+
                     }
+
 
                 `}
 
@@ -77,12 +107,13 @@ export default function SidebarItem({
                     active && (
 
                         <span
+
                             className="
                                 absolute
 
                                 left-0
 
-                                h-[70%]
+                                h-7
 
                                 w-1
 
@@ -90,6 +121,7 @@ export default function SidebarItem({
 
                                 bg-primary
                             "
+
                         />
 
                     )
@@ -97,16 +129,83 @@ export default function SidebarItem({
 
 
 
-                <span
+                <div
+
                     className="
-                        text-sm
-                        font-medium
+                        flex
+
+                        items-center
+
+                        gap-3
                     "
+
                 >
 
-                    {title}
+                    <Icon size={20} />
 
-                </span>
+
+                    <span
+
+                        className="
+                            text-sm
+
+                            font-medium
+                        "
+
+                    >
+
+                        {title}
+
+                    </span>
+
+
+                </div>
+
+
+
+
+                {
+                    badge && (
+
+                        <span
+
+                            className="
+                                min-w-6
+
+                                h-6
+
+                                px-2
+
+
+                                rounded-full
+
+
+                                flex
+
+                                items-center
+
+                                justify-center
+
+
+                                bg-primary/10
+
+                                text-primary
+
+
+                                text-xs
+
+                                font-bold
+                            "
+
+                        >
+
+                            {badge}
+
+                        </span>
+
+                    )
+                }
+
 
 
             </Link>

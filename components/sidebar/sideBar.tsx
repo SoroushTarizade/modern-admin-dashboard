@@ -1,140 +1,199 @@
 "use client";
 
+
 import { usePathname } from "next/navigation";
-import { sidebarItems, sidebarPages } from "./sidebar-data";
+
+import {
+    sidebarItems,
+    sidebarPages
+} from "./sidebar-data";
+
+
 import SidebarItem from "./SidebarItem";
+
+
+import {
+    FiLogOut
+} from "react-icons/fi";
+
 
 
 export default function Sidebar() {
 
-    const pathname = usePathname();
+
+    const pathname =
+        usePathname();
+
 
 
     return (
 
-        <nav
+        <aside
+
             className="
                 hidden
-                md:block
+
+                md:flex
+
+
+                fixed
+
+                left-0
+
+                top-0
+
+
+                z-30
+
 
                 w-[220px]
+
                 lg:w-[240px]
 
-                min-h-screen
 
-                rounded-b-2xl
+                h-screen
+
+
+                flex-col
+
 
                 bg-card
 
-                fixed
-                left-0
-                top-0
-
-                
-
-                
 
                 border-r
+
                 border-border
+
             "
+
         >
 
+
+
+            {/* Logo */}
+
             <div
+
                 className="
-                    pt-4
+                    h-[68px]
+
 
                     flex
-                    flex-col
+
                     items-center
+
+                    justify-center
+
+
+                    border-b
+
+                    border-border
+
                 "
+
+            >
+
+                <h1
+
+                    className="
+                        text-2xl
+
+                        font-extrabold
+                    "
+
+                >
+
+                    <span className="text-primary">
+                        Soroush
+                    </span>
+
+                    <span>
+                        Dash
+                    </span>
+
+
+                </h1>
+
+
+            </div>
+
+
+
+
+
+            {/* Menu */}
+
+            <div
+
+                className="
+                    flex-1
+
+                    overflow-y-auto
+
+
+                    py-5
+                "
+
             >
 
 
-                {/* Main Menu */}
 
-                <ul
-                    className="
-                        w-full
-
-                        px-3
-
-                        space-y-1
-                    "
-                >
-
-                    {
-                        sidebarItems.map((item) => (
-                            <SidebarItem
-                                key={item.href}
-                                title={item.title}
-                                href={item.href}
-                                active={
-                                    pathname === item.href
-                                }
-                            />
-                        ))
-                    }
-
-                </ul>
+                {/* Main */}
 
 
+                <div className="px-3">
 
-                <span
-                    className="
-                        w-[90%]
-                        h-[1px]
-
-                        my-4
-
-                        bg-border
-                    "
-                />
-
-
-
-                {/* Pages */}
-
-                <div
-                    className="
-                        w-full
-                        px-3
-                    "
-                >
 
                     <p
+
                         className="
                             px-3
 
-                            text-sm
+                            mb-3
+
+                            text-xs
+
                             font-bold
 
                             uppercase
 
+                            tracking-wider
+
                             text-muted-foreground
+
                         "
+
                     >
-                        Pages
+
+                        Main
+
                     </p>
 
 
-                    <ul
-                        className="
-                            mt-3
 
+                    <ul
+
+                        className="
                             space-y-1
                         "
+
                     >
 
                         {
-                            sidebarPages.map((item) => (
+                            sidebarItems.map(item => (
+
                                 <SidebarItem
+
                                     key={item.href}
-                                    title={item.title}
-                                    href={item.href}
+
+                                    {...item}
+
                                     active={
                                         pathname === item.href
                                     }
+
                                 />
+
                             ))
                         }
 
@@ -147,52 +206,172 @@ export default function Sidebar() {
 
 
 
-                <span
-                    className="
-                        w-[90%]
-                        h-[1px]
 
-                        my-4
+                {/* Divider */}
+
+                <div
+
+                    className="
+                        mx-auto
+
+                        my-6
+
+                        w-[85%]
+
+                        h-px
 
                         bg-border
                     "
+
                 />
 
 
 
-                {/* Logout */}
-
-                <button
-                    className="
-                        w-[85%]
-                        h-[50px]
-
-                        rounded-xl
-
-                        flex
-                        items-center
-
-                        px-4
 
 
-                        text-foreground
+                {/* Pages */}
 
-                        transition-all
 
-                        hover:bg-destructive
-                        hover:text-white
-                    "
-                >
+                <div className="px-3">
 
-                    Logout
 
-                </button>
+                    <p
+
+                        className="
+                            px-3
+
+                            mb-3
+
+                            text-xs
+
+                            font-bold
+
+                            uppercase
+
+                            tracking-wider
+
+                            text-muted-foreground
+
+                        "
+
+                    >
+
+                        Pages
+
+                    </p>
+
+
+
+                    <ul
+
+                        className="
+                            space-y-1
+                        "
+
+                    >
+
+
+                        {
+                            sidebarPages.map(item => (
+
+                                <SidebarItem
+
+                                    key={item.href}
+
+                                    {...item}
+
+                                    active={
+                                        pathname === item.href
+                                    }
+
+                                />
+
+                            ))
+                        }
+
+
+                    </ul>
+
+
+                </div>
+
 
 
             </div>
 
 
-        </nav>
+
+
+
+            {/* Logout Fixed */}
+
+
+            <div
+
+                className="
+                    p-4
+
+                    border-t
+
+                    border-border
+                "
+
+            >
+
+
+                <button
+
+                    className="
+                        w-full
+
+                        h-12
+
+
+                        rounded-xl
+
+
+                        flex
+
+                        items-center
+
+                        gap-3
+
+
+                        px-4
+
+
+                        text-sm
+
+                        font-semibold
+
+
+                        text-red-500
+
+
+                        hover:bg-red-500/10
+
+
+                        transition-all
+
+                    "
+
+                >
+
+                    <FiLogOut size={18} />
+
+
+                    Logout
+
+
+                </button>
+
+
+
+            </div>
+
+
+        </aside>
 
     );
+
 }

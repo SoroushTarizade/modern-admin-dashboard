@@ -1,18 +1,32 @@
 "use client";
 
+
 import SearchBar from "./SearchBar";
 import HeaderActions from "./HeaderActions";
 
+import useAuth from "@/hooks/useAuth";
+
+
 
 interface HeaderProps {
-    title?: string;
-    isAuthenticated?: boolean;
+
+    onMenuClick?: () => void;
+
 }
 
 
+
 export default function Header({
-    isAuthenticated = true,
+
+    onMenuClick,
+
 }: HeaderProps) {
+
+
+    const {
+        isAuthenticated
+    } = useAuth();
+
 
 
     return (
@@ -23,123 +37,258 @@ export default function Header({
                 fixed
 
                 top-0
+
                 left-0
 
+
                 md:left-[220px]
+
                 lg:left-[240px]
+
 
                 right-0
 
+
                 z-40
 
-                h-[78px]
 
-                bg-card/80
-                backdrop-blur-xl
+                bg-card/70
+
+
+                backdrop-blur-2xl
+
+
+                supports-[backdrop-filter]:bg-card/60
+
 
                 border-b
+
                 border-border
 
-                px-4
-                sm:px-6
-                lg:px-8
 
-                flex
-                items-center
+                transition-all
 
-                gap-4
+                duration-300
             "
 
         >
 
 
 
-            {/* Logo */}
-
             <div
+
                 className="
-                    shrink-0
+                    flex
+
+                    flex-col
+
+
+                    sm:flex-row
+
+
+                    sm:items-center
+
+
+
+                    px-4
+
+                    sm:px-6
+
+                    lg:px-8
+
+
+
+                    py-3
+
+
+
+                    gap-3
+
+                    sm:gap-4
                 "
+
             >
 
-                <p
+
+
+
+
+                {/* Logo + Mobile Actions */}
+
+
+                <div
+
                     className="
-                        text-xl
-                        sm:text-2xl
+                        flex
 
-                        font-extrabold
+                        items-center
 
-                        text-primary
+                        justify-between
 
-                        whitespace-nowrap
+
+                        gap-4
+
+
+
+                        w-full
+
+
+                        sm:w-auto
+
+
+                        shrink-0
                     "
+
                 >
 
-                    Soroush
-                    <span className="text-card-foreground">
-                        Dash
-                    </span>
 
-                </p>
+
+                    <h1
+
+                        className="
+        block
+        min-[720px]:hidden
+
+        text-lg
+        font-extrabold
+
+        tracking-tight
+
+        whitespace-nowrap
+                        "
+
+                    >
+
+                        <span className="text-primary">
+
+                            Soroush
+
+                        </span>
+
+
+                        <span className="text-card-foreground">
+
+                            Dash
+
+                        </span>
+
+
+                    </h1>
+
+
+
+
+
+
+                    {/* Mobile Actions */}
+
+                    <div
+
+                        className="
+                            sm:hidden
+                        "
+
+                    >
+
+                        <HeaderActions
+
+                            isAuthenticated={
+                                isAuthenticated
+                            }
+
+                            onMenuClick={
+                                onMenuClick
+                            }
+
+                        />
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* Search */}
+
+
+                <div
+
+                    className="
+                        w-full
+
+
+                        sm:flex-1
+
+
+                        sm:max-w-xl
+
+                        lg:max-w-2xl
+
+                        xl:max-w-3xl
+
+
+                        mx-auto
+                    "
+
+                >
+
+                    <SearchBar />
+
+                </div>
+
+
+
+
+
+
+
+
+
+                {/* Desktop Actions */}
+
+
+                <div
+
+                    className="
+                        hidden
+
+                        sm:flex
+
+                        shrink-0
+                    "
+
+                >
+
+
+                    <HeaderActions
+
+                        isAuthenticated={
+                            isAuthenticated
+                        }
+
+                        onMenuClick={
+                            onMenuClick
+                        }
+
+                    />
+
+
+                </div>
+
+
+
+
 
             </div>
-
-
-
-
-
-
-            {/* Search */}
-
-            <div
-
-                className="
-                    hidden
-
-                    md:flex
-
-                    flex-1
-
-                    min-w-0
-
-                    max-w-[700px]
-
-                    mx-auto
-                "
-
-            >
-
-                <SearchBar />
-
-            </div>
-
-
-
-
-
-
-
-            {/* Actions */}
-
-            <div
-
-                className="
-                    ml-auto
-
-                    shrink-0
-                "
-
-            >
-
-                <HeaderActions
-
-                    isAuthenticated={isAuthenticated}
-
-                />
-
-            </div>
-
-
 
 
         </header>
