@@ -46,7 +46,6 @@ export default function useDashboard() {
 
     return {
         loading,
-
         stats,
         sales,
         customers,
