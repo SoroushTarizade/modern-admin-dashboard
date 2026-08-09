@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 
 import AuthBackground from "@/components/auth/AuthBackground";
 import AuthCard from "@/components/auth/AuthCard";
@@ -7,21 +11,82 @@ import PasswordInput from "@/components/auth/PasswordInput";
 import AuthButton from "@/components/auth/AuthButton";
 
 export default function LoginPage() {
+    const router = useRouter();
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password: "",
+    });
+
+    const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const { name, value } = event.target;
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = async (
+        event: React.FormEvent<HTMLFormElement>
+    ) => {
+        event.preventDefault();
+
+        setMessage("");
+        setError("");
+        setLoading(true);
+
+        try {
+            const response = await fetch("/api/auth/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setError(
+                    data.message || "Invalid email or password."
+                );
+                return;
+            }
+
+            setMessage(data.message);
+
+            router.push("/");
+        } catch (error) {
+            console.error("Login error:", error);
+
+            setError(
+                "Something went wrong. Please try again."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <AuthBackground>
-
             <AuthCard
                 title="Welcome Back"
                 subtitle="Please enter your email and password to continue."
             >
-
                 <form
+                    onSubmit={handleSubmit}
                     className="
                         space-y-5
                         sm:space-y-6
                     "
                 >
-
                     <AuthInput
                         label="Email Address"
                         type="email"
@@ -29,25 +94,24 @@ export default function LoginPage() {
                         name="email"
                         autoComplete="email"
                         placeholder="Enter your email"
+                        value={formData.email}
+                        onChange={handleChange}
                     />
 
-
                     <div>
-
                         <div
                             className="
                                 mb-3
                                 flex
                                 flex-col
                                 gap-2
-
                                 sm:flex-row
                                 sm:items-center
                                 sm:justify-between
                             "
                         >
-
                             <label
+                                htmlFor="password"
                                 className="
                                     text-sm
                                     font-semibold
@@ -55,7 +119,6 @@ export default function LoginPage() {
                             >
                                 Password
                             </label>
-
 
                             <Link
                                 href="/forgot-password"
@@ -67,9 +130,7 @@ export default function LoginPage() {
                             >
                                 Forgot Password?
                             </Link>
-
                         </div>
-
 
                         <PasswordInput
                             label=""
@@ -77,15 +138,38 @@ export default function LoginPage() {
                             name="password"
                             autoComplete="current-password"
                             placeholder="Enter your password"
+                            value={formData.password}
+                            onChange={handleChange}
                         />
-
                     </div>
 
+                    {error && (
+                        <p
+                            className="
+                                text-center
+                                text-sm
+                                text-red-500
+                            "
+                        >
+                            {error}
+                        </p>
+                    )}
+
+                    {message && (
+                        <p
+                            className="
+                                text-center
+                                text-sm
+                                text-green-500
+                            "
+                        >
+                            {message}
+                        </p>
+                    )}
 
                     <AuthButton>
-                        Sign In
+                        {loading ? "Signing In..." : "Sign In"}
                     </AuthButton>
-
 
                     <p
                         className="
@@ -94,7 +178,6 @@ export default function LoginPage() {
                             text-muted-foreground
                         "
                     >
-
                         Don't have an account?
 
                         <Link
@@ -108,14 +191,9 @@ export default function LoginPage() {
                         >
                             Register
                         </Link>
-
                     </p>
-
-
                 </form>
-
             </AuthCard>
-
         </AuthBackground>
     );
 }
