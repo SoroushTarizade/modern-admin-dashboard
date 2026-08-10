@@ -15,8 +15,9 @@ export default async function Layout({
     }
 
     return (
-        <DashboardLayout>
+        <DashboardLayout user={user}>
             {children}
         </DashboardLayout>
     );
 }
+

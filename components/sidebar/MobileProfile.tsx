@@ -1,75 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { FiLogIn, FiUserPlus, FiUser } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 
 interface MobileProfileProps {
-    isAuthenticated?: boolean;
+    user: {
+        username: string;
+        email: string;
+    };
 }
 
 export default function MobileProfile({
-    isAuthenticated = true,
+    user,
 }: MobileProfileProps) {
-
-    if (!isAuthenticated) {
-        return (
-            <div className="border-b border-border p-4 space-y-3">
-
-                <Link
-                    href="/login"
-                    className="
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-
-                        h-11
-
-                        rounded-xl
-
-                        border
-                        border-border
-
-                        hover:bg-secondary
-
-                        transition-all
-                    "
-                >
-                    <FiLogIn />
-                    Login
-                </Link>
-
-                <Link
-                    href="/register"
-                    className="
-                        flex
-                        items-center
-                        justify-center
-                        gap-2
-
-                        h-11
-
-                        rounded-xl
-
-                        bg-primary
-                        text-white
-
-                        hover:opacity-90
-
-                        transition-all
-                    "
-                >
-                    <FiUserPlus />
-                    Register
-                </Link>
-
-            </div>
-        );
-    }
-
     return (
         <div className="border-b border-border p-4">
-
             <button
                 className="
                     w-full
@@ -86,13 +30,16 @@ export default function MobileProfile({
                     p-3
 
                     transition-all
+
+                    text-left
                 "
             >
-
                 <div
                     className="
                         w-12
                         h-12
+
+                        shrink-0
 
                         rounded-full
 
@@ -108,20 +55,28 @@ export default function MobileProfile({
                     <FiUser size={22} />
                 </div>
 
-                <div className="text-left">
-
-                    <p className="font-bold">
-                        Soroush Tarizadeh
+                <div className="min-w-0">
+                    <p
+                        className="
+                            font-bold
+                            truncate
+                        "
+                    >
+                        {user.username}
                     </p>
 
-                    <p className="text-sm text-muted-foreground">
-                        Administrator
-                    </p>
+                    <p
+                        className="
+                            text-sm
+                            text-muted-foreground
 
+                            truncate
+                        "
+                    >
+                        {user.email}
+                    </p>
                 </div>
-
             </button>
-
         </div>
     );
 }

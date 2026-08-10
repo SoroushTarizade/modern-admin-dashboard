@@ -1,41 +1,40 @@
 "use client";
 
 import { useState } from "react";
+
 import Sidebar from "@/components/sidebar/sideBar";
 import MobileSidebar from "@/components/sidebar/MobileSidebar";
 import Header from "@/components/header/Header";
 
+interface DashboardUser {
+    username: string;
+    email: string;
+}
+
 interface DashboardLayoutProps {
     children: React.ReactNode;
+    user: DashboardUser;
 }
 
 export default function DashboardLayout({
     children,
+    user,
 }: DashboardLayoutProps) {
     const [openSidebar, setOpenSidebar] = useState(false);
-    return (
-        <div
-            className="
-                min-h-screen
-                bg-background
-                text-foreground
-                overflow-x-hidden
-            "
-        >
-            {/* Desktop Sidebar */}
 
+    return (
+        <>
+            {/* Desktop Sidebar */}
             <Sidebar />
 
             {/* Mobile Sidebar */}
             <MobileSidebar
-
                 open={openSidebar}
-
                 onClose={() => setOpenSidebar(false)}
-
+                user={user}
             />
-            {/* Main */}
 
+            {/* Main */}
             <div
                 className="
                     md:ml-[220px]
@@ -44,16 +43,13 @@ export default function DashboardLayout({
                     flex
                     flex-col
                 "
-
             >
                 <Header
-
-                    onMenuClick={() =>
-                        setOpenSidebar(true)
-                    }
+                    user={user}
+                    onMenuClick={() => setOpenSidebar(true)}
                 />
-                <main
 
+                <main
                     className="
                         flex-1
                         mt-20
@@ -65,8 +61,6 @@ export default function DashboardLayout({
                     {children}
                 </main>
             </div>
-        </div>
-
+        </>
     );
-
 }
