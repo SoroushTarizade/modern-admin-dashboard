@@ -1,30 +1,43 @@
 "use client";
 
-
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import {
     sidebarItems,
     sidebarPages
 } from "./sidebar-data";
 
-
 import SidebarItem from "./SidebarItem";
-
 
 import {
     FiLogOut
 } from "react-icons/fi";
 
-
-
 export default function Sidebar() {
 
+    const pathname = usePathname();
+    const router = useRouter();
 
-    const pathname =
-        usePathname();
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "POST",
+            });
 
+            const data = await response.json();
 
+            if (!response.ok) {
+                console.error(data.message);
+                return;
+            }
+
+            router.push("/login");
+            router.refresh();
+
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
 
     return (
 
@@ -35,40 +48,30 @@ export default function Sidebar() {
 
                 md:flex
 
-
                 fixed
 
                 left-0
 
                 top-0
 
-
                 z-30
-
 
                 w-[220px]
 
                 lg:w-[240px]
 
-
                 h-screen
-
 
                 flex-col
 
-
                 bg-card
-
 
                 border-r
 
                 border-border
-
             "
 
         >
-
-
 
             {/* Logo */}
 
@@ -77,18 +80,15 @@ export default function Sidebar() {
                 className="
                     h-[68px]
 
-
                     flex
 
                     items-center
 
                     justify-center
 
-
                     border-b
 
                     border-border
-
                 "
 
             >
@@ -111,13 +111,9 @@ export default function Sidebar() {
                         Dash
                     </span>
 
-
                 </h1>
 
-
             </div>
-
-
 
 
 
@@ -130,19 +126,14 @@ export default function Sidebar() {
 
                     overflow-y-auto
 
-
                     py-5
                 "
 
             >
 
-
-
                 {/* Main */}
 
-
                 <div className="px-3">
-
 
                     <p
 
@@ -160,7 +151,6 @@ export default function Sidebar() {
                             tracking-wider
 
                             text-muted-foreground
-
                         "
 
                     >
@@ -197,13 +187,9 @@ export default function Sidebar() {
                             ))
                         }
 
-
                     </ul>
 
-
                 </div>
-
-
 
 
 
@@ -227,13 +213,9 @@ export default function Sidebar() {
 
 
 
-
-
                 {/* Pages */}
 
-
                 <div className="px-3">
-
 
                     <p
 
@@ -251,7 +233,6 @@ export default function Sidebar() {
                             tracking-wider
 
                             text-muted-foreground
-
                         "
 
                     >
@@ -269,7 +250,6 @@ export default function Sidebar() {
                         "
 
                     >
-
 
                         {
                             sidebarPages.map(item => (
@@ -289,22 +269,15 @@ export default function Sidebar() {
                             ))
                         }
 
-
                     </ul>
 
-
                 </div>
-
-
 
             </div>
 
 
 
-
-
             {/* Logout Fixed */}
-
 
             <div
 
@@ -318,17 +291,16 @@ export default function Sidebar() {
 
             >
 
-
                 <button
+
+                    onClick={handleLogout}
 
                     className="
                         w-full
 
                         h-12
 
-
                         rounded-xl
-
 
                         flex
 
@@ -336,42 +308,30 @@ export default function Sidebar() {
 
                         gap-3
 
-
                         px-4
-
 
                         text-sm
 
                         font-semibold
 
-
                         text-red-500
-
 
                         hover:bg-red-500/10
 
-
                         transition-all
-
                     "
 
                 >
 
                     <FiLogOut size={18} />
 
-
                     Logout
-
 
                 </button>
 
-
-
             </div>
-
 
         </aside>
 
     );
-
 }

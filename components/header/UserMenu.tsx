@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import {
     FiChevronDown,
     FiUser,
@@ -31,7 +33,10 @@ export default function UserMenu({
     },
 }: UserMenuProps) {
 
+    const router = useRouter();
+
     const [open, setOpen] = useState(false);
+
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -47,7 +52,10 @@ export default function UserMenu({
 
         }
 
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener(
+            "mousedown",
+            handleClickOutside
+        );
 
         return () =>
             document.removeEventListener(
@@ -56,6 +64,29 @@ export default function UserMenu({
             );
 
     }, []);
+
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "POST",
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error(data.message);
+                return;
+            }
+
+            router.push("/login");
+            router.refresh();
+
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
+
 
     const menuItems = [
         {
@@ -80,7 +111,9 @@ export default function UserMenu({
         },
     ];
 
+
     return (
+
         <div
             ref={ref}
             className="relative"
@@ -121,6 +154,7 @@ export default function UserMenu({
 
             </button>
 
+
             {open && (
 
                 <div
@@ -156,6 +190,7 @@ export default function UserMenu({
                         />
 
                     </div>
+
 
                     <div className="py-2">
 
@@ -193,9 +228,11 @@ export default function UserMenu({
 
                     </div>
 
+
                     <div className="border-t border-border p-2">
 
                         <button
+                            onClick={handleLogout}
                             className="
                                 flex
                                 items-center
@@ -229,5 +266,6 @@ export default function UserMenu({
             )}
 
         </div>
+
     );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 import {
     FiSettings,
     FiHelpCircle,
@@ -7,6 +9,29 @@ import {
 } from "react-icons/fi";
 
 export default function MobileSettings() {
+
+    const router = useRouter();
+
+    const handleLogout = async () => {
+        try {
+            const response = await fetch("/api/auth/logout", {
+                method: "POST",
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                console.error(data.message);
+                return;
+            }
+
+            router.push("/login");
+            router.refresh();
+
+        } catch (error) {
+            console.error("Logout error:", error);
+        }
+    };
 
     return (
 
@@ -74,6 +99,7 @@ export default function MobileSettings() {
 
 
             <button
+                onClick={handleLogout}
                 className="
                     w-full
 
@@ -103,5 +129,4 @@ export default function MobileSettings() {
         </div>
 
     );
-
 }
