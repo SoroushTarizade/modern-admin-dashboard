@@ -1,38 +1,24 @@
 "use client";
 
-
 import SearchBar from "./SearchBar";
 import HeaderActions from "./HeaderActions";
 
-import useAuth from "@/hooks/useAuth";
-
-
-
-interface HeaderProps {
-
-    onMenuClick?: () => void;
-
+interface HeaderUser {
+    username: string;
+    email: string;
 }
 
-
+interface HeaderProps {
+    user: HeaderUser;
+    onMenuClick?: () => void;
+}
 
 export default function Header({
-
+    user,
     onMenuClick,
-
 }: HeaderProps) {
-
-
-    const {
-        isAuthenticated
-    } = useAuth();
-
-
-
     return (
-
         <header
-
             className="
                 fixed
 
@@ -40,55 +26,38 @@ export default function Header({
 
                 left-0
 
-
                 md:left-[220px]
 
                 lg:left-[240px]
 
-
                 right-0
-
 
                 z-40
 
-
                 bg-card/70
-
 
                 backdrop-blur-2xl
 
-
                 supports-[backdrop-filter]:bg-card/60
-
 
                 border-b
 
                 border-border
 
-
                 transition-all
 
                 duration-300
             "
-
         >
-
-
-
             <div
-
                 className="
                     flex
 
                     flex-col
 
-
                     sm:flex-row
 
-
                     sm:items-center
-
-
 
                     px-4
 
@@ -96,28 +65,16 @@ export default function Header({
 
                     lg:px-8
 
-
-
                     py-3
-
-
 
                     gap-3
 
                     sm:gap-4
                 "
-
             >
-
-
-
-
-
                 {/* Logo + Mobile Actions */}
 
-
                 <div
-
                     className="
                         flex
 
@@ -125,109 +82,60 @@ export default function Header({
 
                         justify-between
 
-
                         gap-4
-
-
 
                         w-full
 
-
                         sm:w-auto
-
 
                         shrink-0
                     "
-
                 >
-
-
-
                     <h1
-
                         className="
-        block
-        min-[720px]:hidden
+                            block
 
-        text-lg
-        font-extrabold
+                            min-[720px]:hidden
 
-        tracking-tight
+                            text-lg
 
-        whitespace-nowrap
+                            font-extrabold
+
+                            tracking-tight
+
+                            whitespace-nowrap
                         "
-
                     >
-
                         <span className="text-primary">
-
                             Soroush
-
                         </span>
-
 
                         <span className="text-card-foreground">
-
                             Dash
-
                         </span>
-
-
                     </h1>
-
-
-
-
-
 
                     {/* Mobile Actions */}
 
                     <div
-
                         className="
                             sm:hidden
                         "
-
                     >
-
                         <HeaderActions
-
-                            isAuthenticated={
-                                isAuthenticated
-                            }
-
-                            onMenuClick={
-                                onMenuClick
-                            }
-
+                            user={user}
+                            onMenuClick={onMenuClick}
                         />
-
-
                     </div>
-
-
-
                 </div>
-
-
-
-
-
-
-
-
 
                 {/* Search */}
 
-
                 <div
-
                     className="
                         w-full
 
-
                         sm:flex-1
-
 
                         sm:max-w-xl
 
@@ -235,29 +143,15 @@ export default function Header({
 
                         xl:max-w-3xl
 
-
                         mx-auto
                     "
-
                 >
-
                     <SearchBar />
-
                 </div>
-
-
-
-
-
-
-
-
 
                 {/* Desktop Actions */}
 
-
                 <div
-
                     className="
                         hidden
 
@@ -265,34 +159,13 @@ export default function Header({
 
                         shrink-0
                     "
-
                 >
-
-
                     <HeaderActions
-
-                        isAuthenticated={
-                            isAuthenticated
-                        }
-
-                        onMenuClick={
-                            onMenuClick
-                        }
-
+                        user={user}
+                        onMenuClick={onMenuClick}
                     />
-
-
                 </div>
-
-
-
-
-
             </div>
-
-
         </header>
-
     );
-
 }

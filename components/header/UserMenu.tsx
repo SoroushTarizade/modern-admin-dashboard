@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 
 import {
     FiChevronDown,
@@ -16,40 +15,29 @@ import {
 import UserAvatar from "./UserAvatar";
 
 interface UserMenuProps {
-    user?: {
-        name: string;
-        role: string;
-        image?: string;
-        status?: "online" | "away" | "busy" | "offline";
+    user: {
+        username: string;
+        email: string;
     };
 }
 
 export default function UserMenu({
-    user = {
-        name: "Soroush Tarizadeh",
-        role: "Administrator",
-        image: "",
-        status: "online",
-    },
+    user,
 }: UserMenuProps) {
-
-    const router = useRouter();
-
     const [open, setOpen] = useState(false);
 
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-
         function handleClickOutside(e: MouseEvent) {
-
             if (
                 ref.current &&
-                !ref.current.contains(e.target as Node)
+                !ref.current.contains(
+                    e.target as Node
+                )
             ) {
                 setOpen(false);
             }
-
         }
 
         document.addEventListener(
@@ -62,31 +50,7 @@ export default function UserMenu({
                 "mousedown",
                 handleClickOutside
             );
-
     }, []);
-
-
-    const handleLogout = async () => {
-        try {
-            const response = await fetch("/api/auth/logout", {
-                method: "POST",
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                console.error(data.message);
-                return;
-            }
-
-            router.push("/login");
-            router.refresh();
-
-        } catch (error) {
-            console.error("Logout error:", error);
-        }
-    };
-
 
     const menuItems = [
         {
@@ -111,24 +75,24 @@ export default function UserMenu({
         },
     ];
 
-
     return (
-
         <div
             ref={ref}
             className="relative"
         >
-
             <button
                 onClick={() => setOpen(!open)}
                 className="
                     flex
+
                     items-center
+
                     gap-3
 
                     rounded-2xl
 
                     px-3
+
                     py-2
 
                     hover:bg-secondary
@@ -136,31 +100,31 @@ export default function UserMenu({
                     transition-all
                 "
             >
-
                 <UserAvatar
-                    name={user.name}
-                    image={user.image}
-                    role={user.role}
-                    status={user.status}
+                    name={user.username}
+                    image=""
+                    role="User"
+                    status="online"
                 />
 
                 <FiChevronDown
                     className={`
                         transition-transform
+
                         duration-300
+
                         ${open ? "rotate-180" : ""}
                     `}
                 />
-
             </button>
 
-
             {open && (
-
                 <div
                     className="
                         absolute
+
                         right-0
+
                         mt-4
 
                         w-72
@@ -170,6 +134,7 @@ export default function UserMenu({
                         bg-card
 
                         border
+
                         border-border
 
                         shadow-2xl
@@ -179,33 +144,38 @@ export default function UserMenu({
                         z-50
                     "
                 >
+                    <div
+                        className="
+                            p-5
 
-                    <div className="p-5 border-b border-border">
+                            border-b
 
+                            border-border
+                        "
+                    >
                         <UserAvatar
-                            name={user.name}
-                            image={user.image}
-                            role={user.role}
-                            status={user.status}
+                            name={user.username}
+                            image=""
+                            role={user.email}
+                            status="online"
                         />
-
                     </div>
 
-
                     <div className="py-2">
-
                         {menuItems.map((item) => (
-
                             <button
                                 key={item.title}
                                 className="
                                     flex
+
                                     items-center
+
                                     gap-4
 
                                     w-full
 
                                     px-5
+
                                     py-3
 
                                     hover:bg-secondary
@@ -213,7 +183,6 @@ export default function UserMenu({
                                     transition-all
                                 "
                             >
-
                                 <span className="text-primary">
                                     {item.icon}
                                 </span>
@@ -221,21 +190,25 @@ export default function UserMenu({
                                 <span className="font-medium">
                                     {item.title}
                                 </span>
-
                             </button>
-
                         ))}
-
                     </div>
 
+                    <div
+                        className="
+                            border-t
 
-                    <div className="border-t border-border p-2">
+                            border-border
 
+                            p-2
+                        "
+                    >
                         <button
-                            onClick={handleLogout}
                             className="
                                 flex
+
                                 items-center
+
                                 gap-4
 
                                 w-full
@@ -243,6 +216,7 @@ export default function UserMenu({
                                 rounded-xl
 
                                 px-4
+
                                 py-3
 
                                 text-red-500
@@ -252,20 +226,13 @@ export default function UserMenu({
                                 transition-all
                             "
                         >
-
                             <FiLogOut size={18} />
 
                             Logout
-
                         </button>
-
                     </div>
-
                 </div>
-
             )}
-
         </div>
-
     );
 }

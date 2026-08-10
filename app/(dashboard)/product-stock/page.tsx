@@ -1,14 +1,9 @@
 "use client";
 
-import Header from "@/components/header/Header";
-import Sidebar from "@/components/sidebar/sideBar";
-
 import ProductStockTable from "@/components/productStock/ProductStockTable";
-
 import useProductStock from "@/hooks/useProductStock";
 
 export default function ProductStockPage() {
-
     const {
         products,
         handleDelete,
@@ -16,8 +11,7 @@ export default function ProductStockPage() {
     } = useProductStock();
 
     return (
-
-        <div
+        <main
             className="
                 min-h-screen
 
@@ -26,53 +20,33 @@ export default function ProductStockPage() {
                 text-foreground
             "
         >
-
-            <Sidebar />
-
-            <Header />
-
-            <main
+            <div
                 className="
-                    pt-[50px]
-                    px-4
-                    sm:px-6
-                    lg:px-8
+                    mx-auto
+
+                    w-full
+
+                    max-w-7xl
                 "
             >
-
-                <div
+                <h1
                     className="
-                        mx-auto
+                        text-2xl
 
-                        w-full
+                        sm:text-3xl
 
-                        max-w-7xl
+                        font-bold
                     "
                 >
+                    Product Stock
+                </h1>
 
-                    <h1
-                        className="
-                            text-2xl
-                            sm:text-3xl
-
-                            font-bold
-                        "
-                    >
-                        Product Stock
-                    </h1>
-
-                    <ProductStockTable
-                        products={products}
-                        onDelete={handleDelete}
-                        onUpdate={handleUpdate}
-                    />
-
-                </div>
-
-            </main>
-
-        </div>
-
+                <ProductStockTable
+                    products={products}
+                    onDelete={handleDelete}
+                    onUpdate={handleUpdate}
+                />
+            </div>
+        </main>
     );
-
 }
