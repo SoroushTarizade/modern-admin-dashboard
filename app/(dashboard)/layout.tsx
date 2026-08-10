@@ -1,24 +1,16 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import DashboardLayout from "@/components/layout/DashboardLayout";
-import { verifySession } from "@/lib/session";
+import { getCurrentUser } from "@/lib/session";
 
 export default async function Layout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get("session");
+    const user = await getCurrentUser();
 
-    if (!sessionCookie?.value) {
-        redirect("/login");
-    }
-
-    const session = await verifySession(sessionCookie.value);
-
-    if (!session?.userId) {
+    if (!user) {
         redirect("/login");
     }
 
