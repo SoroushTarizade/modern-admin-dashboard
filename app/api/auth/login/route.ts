@@ -1,7 +1,7 @@
 import { connectDB } from "@/lib/mongodb";
 import User from "@/models/User";
 import bcrypt from "bcrypt";
-
+import { createSession } from "@/lib/session";
 
 export async function POST(request:Request){
     try{
@@ -42,16 +42,26 @@ export async function POST(request:Request){
             },{status : 401})
         }
 
-        return Response.json({
-            success:true,
-            message:"Login successful.",
-            user:{
-                id: user._id,
-                username: user.username,
-                email: user.email,
-            },
-        }, {status: 200});
+        const token = await createSession(user._id.toString());
 
+        const response = Response.json({
+            success: true,
+            message: "Login successful.",
+            user: {
+            id: user._id,
+            username: user.username,
+            email: user.email,
+        }, 
+        }, {
+        status: 200,
+        });
+
+        response.headers.set(
+            "Set-Cookie",
+            `session=${token}; HttpOnly; Path=/; Max-Age=604800; SameSite=Lax`  
+        );
+
+return response;
     } catch (error) {
         console.log("Login Error" , error)
 
