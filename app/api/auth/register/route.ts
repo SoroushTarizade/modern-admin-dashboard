@@ -16,7 +16,7 @@ export async function POST(request: Request) {
             confirmPassword,
         } = body;
 
-        // Required fields
+        // Validate required fields
         if (
             !username ||
             !email ||
@@ -28,17 +28,18 @@ export async function POST(request: Request) {
                     success: false,
                     message: "All fields are required.",
                 },
-                { status: 400 }
+                {
+                    status: 400,
+                }
             );
         }
 
         const normalizedUsername = username.trim();
-
         const normalizedEmail = email
-            .trim()
-            .toLowerCase();
+            .toLowerCase()
+            .trim();
 
-        // Username validation
+        // Validate username
         if (normalizedUsername.length < 3) {
             return Response.json(
                 {
@@ -46,40 +47,13 @@ export async function POST(request: Request) {
                     message:
                         "Username must be at least 3 characters.",
                 },
-                { status: 400 }
-            );
-        }
-
-        // Username characters validation
-        const usernameRegex = /^[a-zA-Z0-9_]+$/;
-
-        if (!usernameRegex.test(normalizedUsername)) {
-            return Response.json(
                 {
-                    success: false,
-                    message:
-                        "Username can only contain letters, numbers, and underscores.",
-                },
-                { status: 400 }
+                    status: 400,
+                }
             );
         }
 
-        // Email validation
-        const emailRegex =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(normalizedEmail)) {
-            return Response.json(
-                {
-                    success: false,
-                    message:
-                        "Please enter a valid email address.",
-                },
-                { status: 400 }
-            );
-        }
-
-        // Password validation
+        // Validate password length
         if (password.length < 6) {
             return Response.json(
                 {
@@ -87,7 +61,9 @@ export async function POST(request: Request) {
                     message:
                         "Password must be at least 6 characters.",
                 },
-                { status: 400 }
+                {
+                    status: 400,
+                }
             );
         }
 
@@ -99,39 +75,27 @@ export async function POST(request: Request) {
                     message:
                         "Passwords do not match.",
                 },
-                { status: 400 }
+                {
+                    status: 400,
+                }
             );
         }
 
-        // Check duplicate email
-        const existingEmail = await User.findOne({
+        // Check existing user
+        const existingUser = await User.findOne({
             email: normalizedEmail,
         });
 
-        if (existingEmail) {
+        if (existingUser) {
             return Response.json(
                 {
                     success: false,
                     message:
-                        "User with this email already exists.",
+                        "An account with this email already exists.",
                 },
-                { status: 409 }
-            );
-        }
-
-        // Check duplicate username
-        const existingUsername = await User.findOne({
-            username: normalizedUsername,
-        });
-
-        if (existingUsername) {
-            return Response.json(
                 {
-                    success: false,
-                    message:
-                        "This username is already taken.",
-                },
-                { status: 409 }
+                    status: 409,
+                }
             );
         }
 
@@ -164,7 +128,9 @@ export async function POST(request: Request) {
                     email: user.email,
                 },
             },
-            { status: 201 }
+            {
+                status: 201,
+            }
         );
 
         // Set session cookie
@@ -177,7 +143,7 @@ export async function POST(request: Request) {
 
     } catch (error) {
         console.error(
-            "Register error:",
+            "Register Error:",
             error
         );
 
@@ -187,7 +153,9 @@ export async function POST(request: Request) {
                 message:
                     "Something went wrong.",
             },
-            { status: 500 }
+            {
+                status: 500,
+            }
         );
     }
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import {useState} from "react" ;
+import { useRouter } from "next/navigation";
 import AuthBackground from "@/components/auth/AuthBackground";
 import AuthCard from "@/components/auth/AuthCard";
 import AuthInput from "@/components/auth/AuthInput";
@@ -9,6 +10,7 @@ import PasswordInput from "@/components/auth/PasswordInput";
 import AuthButton from "@/components/auth/AuthButton";
 
 export default function RegisterPage() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -53,15 +55,8 @@ export default function RegisterPage() {
             setMessage(data.message);
             return;
         }
-
-        setMessage(data.message);
-
-        setFormData({
-            username: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-        });
+        router.push("/");
+        router.refresh();
     } catch (error) {
         console.error("Register error:", error);
         setMessage("Something went wrong. Please try again.");
