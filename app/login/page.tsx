@@ -63,6 +63,7 @@ export default function LoginPage() {
             setMessage(data.message);
 
             router.push("/");
+            router.refresh();
         } catch (error) {
             console.error("Login error:", error);
 
