@@ -12,6 +12,10 @@ if (!secretKey) {
 
 const encodedKey = new TextEncoder().encode(secretKey);
 
+const SESSION_COOKIE_NAME = "session";
+
+const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+
 export async function createSession(userId: string) {
     const token = await new SignJWT({
         userId,
@@ -39,10 +43,38 @@ export async function verifySession(token: string) {
     }
 }
 
+export async function setSessionCookie(token: string) {
+    const cookieStore = await cookies();
+
+    cookieStore.set(
+        SESSION_COOKIE_NAME,
+        token,
+        {
+            httpOnly: true,
+
+            secure: process.env.NODE_ENV === "production",
+
+            sameSite: "lax",
+
+            path: "/",
+
+            maxAge: SESSION_MAX_AGE,
+        }
+    );
+}
+
+export async function deleteSessionCookie() {
+    const cookieStore = await cookies();
+
+    cookieStore.delete(SESSION_COOKIE_NAME);
+}
+
 export async function getCurrentUser() {
     const cookieStore = await cookies();
 
-    const sessionCookie = cookieStore.get("session");
+    const sessionCookie = cookieStore.get(
+        SESSION_COOKIE_NAME
+    );
 
     if (!sessionCookie?.value) {
         return null;
