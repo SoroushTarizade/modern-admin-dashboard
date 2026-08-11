@@ -62,14 +62,13 @@ export async function getCurrentUser() {
         session.userId
     ).select("-password");
 
-if (!user) {
-    return null;
-}
+    if (!user) {
+        return null;
+    }
 
-return {
-    id: user._id.toString(),
-    username: user.username,
-    email: user.email,
-};
-    return user;
+    return {
+        id: user._id.toString(),
+        username: user.username,
+        email: user.email,
+    };
 }
