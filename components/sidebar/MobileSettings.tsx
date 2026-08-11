@@ -1,132 +1,93 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import {
-    FiSettings,
-    FiHelpCircle,
-    FiLogOut,
+FiSettings,
+FiHelpCircle,
+FiLogOut,
 } from "react-icons/fi";
+
+import LogoutButton from "@/components/auth/LogoutButton";
 
 export default function MobileSettings() {
 
-    const router = useRouter();
+return (
 
-    const handleLogout = async () => {
-        try {
-            const response = await fetch("/api/auth/logout", {
-                method: "POST",
-            });
+    <div
+        className="
+            border-t
+            border-border
 
-            const data = await response.json();
+            py-2
+        "
+    >
 
-            if (!response.ok) {
-                console.error(data.message);
-                return;
-            }
-
-            router.push("/login");
-            router.refresh();
-
-        } catch (error) {
-            console.error("Logout error:", error);
-        }
-    };
-
-    return (
-
-        <div
+        <button
+            type="button"
             className="
-                border-t
-                border-border
+                w-full
+                h-12
+                px-4
 
-                py-2
+                flex
+                items-center
+                gap-3
+
+                hover:bg-secondary
+
+                transition-all
             "
         >
+            <FiSettings />
 
-            <button
-                className="
-                    w-full
-
-                    h-12
-
-                    px-4
-
-                    flex
-                    items-center
-
-                    gap-3
-
-                    hover:bg-secondary
-
-                    transition-all
-                "
-            >
-
-                <FiSettings />
-
-                Settings
-
-            </button>
+            Settings
+        </button>
 
 
+        <button
+            type="button"
+            className="
+                w-full
+                h-12
+                px-4
 
-            <button
-                className="
-                    w-full
+                flex
+                items-center
+                gap-3
 
-                    h-12
+                hover:bg-secondary
 
-                    px-4
+                transition-all
+            "
+        >
+            <FiHelpCircle />
 
-                    flex
-                    items-center
-
-                    gap-3
-
-                    hover:bg-secondary
-
-                    transition-all
-                "
-            >
-
-                <FiHelpCircle />
-
-                Help Center
-
-            </button>
+            Help Center
+        </button>
 
 
+        <LogoutButton
+            className="
+                w-full
+                h-12
+                px-4
 
-            <button
-                onClick={handleLogout}
-                className="
-                    w-full
+                flex
+                items-center
+                gap-3
 
-                    h-12
+                text-red-500
 
-                    px-4
+                hover:bg-red-500/10
 
-                    flex
-                    items-center
+                transition-all
+            "
+        >
+            <FiLogOut />
 
-                    gap-3
+            Logout
+        </LogoutButton>
 
-                    text-red-500
+    </div>
+);
 
-                    hover:bg-red-500/10
-
-                    transition-all
-                "
-            >
-
-                <FiLogOut />
-
-                Logout
-
-            </button>
-
-        </div>
-
-    );
 }

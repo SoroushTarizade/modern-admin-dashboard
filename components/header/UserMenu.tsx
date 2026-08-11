@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
+import LogoutButton from "@/components/auth/LogoutButton";
 import {
     FiChevronDown,
     FiUser,
@@ -203,33 +203,24 @@ export default function UserMenu({
                             p-2
                         "
                     >
-                        <button
-                            className="
-                                flex
+<LogoutButton
+className="
+flex
+items-center
+gap-4
+    w-full
+    rounded-xl
+    px-4
+    py-3
+    text-red-500
+    hover:bg-red-500/10
+    transition-all
+"
+>
+<FiLogOut size={18} />
+Logout
+</LogoutButton>
 
-                                items-center
-
-                                gap-4
-
-                                w-full
-
-                                rounded-xl
-
-                                px-4
-
-                                py-3
-
-                                text-red-500
-
-                                hover:bg-red-500/10
-
-                                transition-all
-                            "
-                        >
-                            <FiLogOut size={18} />
-
-                            Logout
-                        </button>
                     </div>
                 </div>
             )}
