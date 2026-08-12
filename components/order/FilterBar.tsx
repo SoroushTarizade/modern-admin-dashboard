@@ -8,16 +8,19 @@ import OrderTypeFilter from "./OrderTypeFilter";
 
 interface Props {
     date: string;
-    status: string;
-    type: string;
+
+    status: string[];
+
+    type: string[];
 
     onDateChange: (value: string) => void;
-    onStatusChange: (value: string) => void;
-    onTypeChange: (value: string) => void;
+
+    onStatusChange: (value: string[]) => void;
+
+    onTypeChange: (value: string[]) => void;
 
     onReset: () => void;
 }
-
 export default function FilterBar({
     date,
     status,

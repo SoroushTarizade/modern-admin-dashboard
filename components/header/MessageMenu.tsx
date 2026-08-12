@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
     FiMessageCircle,
@@ -31,7 +32,7 @@ const messages = [
 ];
 
 export default function MessageMenu() {
-
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -242,33 +243,30 @@ export default function MessageMenu() {
                         ))}
 
                     </div>
-                    <button
-                        className="
-                            w-full
-
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-
-                            p-4
-
-                            border-t
-                            border-border
-
-                            text-primary
-                            font-semibold
-
-                            hover:bg-secondary
-                            transition-all
-                        "
-                    >
-
-                        View All Messages
-
-                        <FiChevronRight />
-
-                    </button>
+<button
+    type="button"
+    onClick={() => {
+        setOpen(false);
+        router.push("/messages");
+    }}
+    className="
+        w-full
+        flex
+        items-center
+        justify-center
+        gap-2
+        p-4
+        border-t
+        border-border
+        text-primary
+        font-semibold
+        hover:bg-secondary
+        transition-all
+    "
+>
+    View All Messages
+    <FiChevronRight />
+</button>
                 </div>
         </div>
     );

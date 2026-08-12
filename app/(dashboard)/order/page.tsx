@@ -10,8 +10,8 @@ import { orders } from "@/data/orders";
 
 export default function OrdersPage() {
     const [date, setDate] = useState("");
-    const [status, setStatus] = useState("All");
-    const [type, setType] = useState("All");
+    const [status, setStatus] = useState<string[]>([]);
+    const [type, setType] = useState<string[]>([]);
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -20,13 +20,16 @@ export default function OrdersPage() {
     const filteredOrders = useMemo(() => {
         return orders.filter((order) => {
             const matchStatus =
-                status === "All" || order.status === status;
+                status.length === 0 ||
+                status.includes(order.status);
 
             const matchType =
-                type === "All" || order.type === type;
+                type.length === 0 ||
+                type.includes(order.type);
 
             const matchDate =
-                date === "" || order.date === date;
+                date === "" ||
+                order.date === date;
 
             return (
                 matchStatus &&
@@ -47,31 +50,27 @@ export default function OrdersPage() {
 
     function resetFilters() {
         setDate("");
-        setStatus("All");
-        setType("All");
+        setStatus([]);
+        setType([]);
         setCurrentPage(1);
     }
 
     return (
         <div className="min-h-screen bg-background text-foreground">
-
-
             <main
                 className="
-            pt-[50px]
-            px-4
-            sm:px-6
-            lg:px-8
-        "
+                    pt-[50px]
+                    px-4
+                    sm:px-6
+                    lg:px-8
+                "
             >
-
                 <h1
                     className="
-                text-2xl
-                sm:text-3xl
-
-                font-bold
-            "
+                        text-2xl
+                        sm:text-3xl
+                        font-bold
+                    "
                 >
                     Order Lists
                 </h1>
@@ -95,9 +94,7 @@ export default function OrdersPage() {
                     totalPages={totalPages}
                     onPageChange={setCurrentPage}
                 />
-
             </main>
-
         </div>
     );
 }
