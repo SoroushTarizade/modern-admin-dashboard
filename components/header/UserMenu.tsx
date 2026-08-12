@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import LogoutButton from "@/components/auth/LogoutButton";
 
@@ -31,6 +31,8 @@ export default function UserMenu({
 
     const ref = useRef<HTMLDivElement>(null);
 
+    const router = useRouter();
+
     useEffect(() => {
         function handleClickOutside(e: MouseEvent) {
             if (
@@ -57,24 +59,36 @@ export default function UserMenu({
         {
             title: "My Profile",
             icon: <FiUser size={18} />,
+            href: "/profile",
         },
         {
             title: "Settings",
             icon: <FiSettings size={18} />,
+            href: "/settings",
         },
         {
             title: "Billing",
             icon: <FiCreditCard size={18} />,
+            href: null,
         },
         {
             title: "Activity Log",
             icon: <FiActivity size={18} />,
+            href: null,
         },
         {
             title: "Help Center",
             icon: <FiHelpCircle size={18} />,
+            href: null,
         },
     ];
+
+    function handleNavigation(href: string | null) {
+        if (!href) return;
+
+        setOpen(false);
+        router.push(href);
+    }
 
     return (
         <div
@@ -82,22 +96,19 @@ export default function UserMenu({
             className="relative"
         >
             {/* User Button */}
-
             <button
                 type="button"
                 onClick={() => setOpen(!open)}
+                aria-expanded={open}
+                aria-haspopup="menu"
                 className="
                     flex
                     items-center
                     gap-3
-
                     rounded-2xl
-
                     px-3
                     py-2
-
                     hover:bg-secondary
-
                     transition-all
                 "
             >
@@ -112,48 +123,37 @@ export default function UserMenu({
                     className={`
                         transition-transform
                         duration-300
-
-                        ${
-                            open
-                                ? "rotate-180"
-                                : ""
-                        }
+                        ${open ? "rotate-180" : ""}
                     `}
                 />
             </button>
 
             {/* Dropdown */}
-
             {open && (
                 <div
                     className="
                         absolute
-
                         right-0
                         mt-4
-
                         w-72
-
                         rounded-2xl
-
                         bg-card
-
                         border
                         border-border
-
                         shadow-2xl
-
                         overflow-hidden
-
                         z-50
+                        animate-in
+                        fade-in
+                        slide-in-from-top-2
+                        duration-200
                     "
+                    role="menu"
                 >
                     {/* User Info */}
-
                     <div
                         className="
                             p-5
-
                             border-b
                             border-border
                         "
@@ -167,77 +167,54 @@ export default function UserMenu({
                     </div>
 
                     {/* Menu Items */}
-
                     <div className="py-2">
-                        {menuItems.map((item) =>
-                            item.title === "My Profile" ? (
-                                <Link
-                                    key={item.title}
-                                    href="/profile"
-                                    onClick={() =>
-                                        setOpen(false)
+                        {menuItems.map((item) => (
+                            <button
+                                key={item.title}
+                                type="button"
+                                disabled={!item.href}
+                                onClick={() =>
+                                    handleNavigation(item.href)
+                                }
+                                className={`
+                                    flex
+                                    items-center
+                                    gap-4
+                                    w-full
+                                    px-5
+                                    py-3
+                                    text-left
+                                    transition-all
+                                    ${
+                                        item.href
+                                            ? `
+                                                hover:bg-secondary
+                                                cursor-pointer
+                                            `
+                                            : `
+                                                opacity-50
+                                                cursor-not-allowed
+                                            `
                                     }
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-4
+                                `}
+                                role="menuitem"
+                            >
+                                <span className="text-primary">
+                                    {item.icon}
+                                </span>
 
-                                        w-full
-
-                                        px-5
-                                        py-3
-
-                                        hover:bg-secondary
-
-                                        transition-all
-                                    "
-                                >
-                                    <span className="text-primary">
-                                        {item.icon}
-                                    </span>
-
-                                    <span className="font-medium">
-                                        {item.title}
-                                    </span>
-                                </Link>
-                            ) : (
-                                <button
-                                    key={item.title}
-                                    type="button"
-                                    className="
-                                        flex
-                                        items-center
-                                        gap-4
-
-                                        w-full
-
-                                        px-5
-                                        py-3
-
-                                        hover:bg-secondary
-
-                                        transition-all
-                                    "
-                                >
-                                    <span className="text-primary">
-                                        {item.icon}
-                                    </span>
-
-                                    <span className="font-medium">
-                                        {item.title}
-                                    </span>
-                                </button>
-                            )
-                        )}
+                                <span className="font-medium">
+                                    {item.title}
+                                </span>
+                            </button>
+                        ))}
                     </div>
 
                     {/* Logout */}
-
                     <div
                         className="
                             border-t
                             border-border
-
                             p-2
                         "
                     >
@@ -246,18 +223,12 @@ export default function UserMenu({
                                 flex
                                 items-center
                                 gap-4
-
                                 w-full
-
                                 rounded-xl
-
                                 px-4
                                 py-3
-
                                 text-red-500
-
                                 hover:bg-red-500/10
-
                                 transition-all
                             "
                         >
