@@ -120,32 +120,41 @@ export default function MessageMenu() {
 
             </button>
 
-            {open && (
+<div
+    className={`
+        absolute
+        right-0
+        mt-6
 
-                <div
-                    className="
-                        absolute
-                        right-0
-                        mt-3
+        w-[calc(100vw-32px)]
+        sm:w-80
 
-                        w-[calc(100vw - 32px)]
-                        sm:w-80
+        rounded-2xl
 
-                        rounded-2xl
+        bg-card
 
-                        bg-card
+        border
+        border-border
 
-                        border
-                        border-border
+        shadow-2xl
 
-                        shadow-2xl
+        overflow-hidden
 
-                        overflow-hidden
+        z-50
 
-                        z-50
-                    "
-                >
+        origin-top-right
 
+        transition-all
+        duration-200
+        ease-out
+
+        ${
+            open
+                ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 scale-95 -translate-y-2 invisible pointer-events-none"
+        }
+    `}
+>
                     <div className="flex items-center justify-between p-4 border-b border-border">
 
                         <h3 className="font-semibold">
@@ -157,7 +166,6 @@ export default function MessageMenu() {
                         </span>
 
                     </div>
-
                     <div>
 
                         {messages.map((message) => (
@@ -234,7 +242,6 @@ export default function MessageMenu() {
                         ))}
 
                     </div>
-
                     <button
                         className="
                             w-full
@@ -262,11 +269,7 @@ export default function MessageMenu() {
                         <FiChevronRight />
 
                     </button>
-
                 </div>
-
-            )}
-
         </div>
     );
 }

@@ -141,31 +141,32 @@ export default function Notification() {
 
             </button>
 
-            {open && (
+<div
+    className={`
+        absolute
+        right-0
+        mt-6
+        w-[calc(100vw-32px)]
+        sm:w-96
+        rounded-2xl
+        bg-card
+        border
+        border-border
+        shadow-2xl
+        overflow-hidden
+        z-50
+        origin-top-right
+        transition-all
+        duration-200
+        ease-out
 
-                <div
-                    className="
-                        absolute
-                        right-0
-                        mt-3
-
-                        w-[calc(100vw-32px)]
-                        sm:w-96
-
-                        rounded-2xl
-
-                        bg-card
-
-                        border
-                        border-border
-
-                        shadow-2xl
-
-                        overflow-hidden
-
-                        z-50
-                    "
-                >
+        ${
+            open
+                ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 scale-95 -translate-y-2 invisible pointer-events-none"
+        }
+    `}
+>
 
                     <div className="flex items-center justify-between p-5 border-b border-border">
 
@@ -273,9 +274,6 @@ export default function Notification() {
                     </button>
 
                 </div>
-
-            )}
-
         </div>
 
     );

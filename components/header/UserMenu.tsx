@@ -84,19 +84,12 @@ export default function UserMenu({
                 onClick={() => setOpen(!open)}
                 className="
                     flex
-
                     items-center
-
                     gap-3
-
                     rounded-2xl
-
                     px-3
-
                     py-2
-
                     hover:bg-secondary
-
                     transition-all
                 "
             >
@@ -117,39 +110,35 @@ export default function UserMenu({
                     `}
                 />
             </button>
+<div
+    className={`
+        absolute
+        right-0
+        mt-3
+        w-72
+        rounded-2xl
+        bg-card
+        border
+        border-border
+        shadow-2xl
+        overflow-hidden
+        z-50
+        origin-top-right
+        transition-all
+        duration-200
+        ease-out
 
-            {open && (
-                <div
-                    className="
-                        absolute
-
-                        right-0
-
-                        mt-4
-
-                        w-72
-
-                        rounded-2xl
-
-                        bg-card
-
-                        border
-
-                        border-border
-
-                        shadow-2xl
-
-                        overflow-hidden
-
-                        z-50
-                    "
-                >
+        ${
+            open
+                ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 scale-95 -translate-y-2 invisible pointer-events-none"
+        }
+    `}
+>
                     <div
                         className="
                             p-5
-
                             border-b
-
                             border-border
                         "
                     >
@@ -223,7 +212,6 @@ Logout
 
                     </div>
                 </div>
-            )}
         </div>
     );
 }

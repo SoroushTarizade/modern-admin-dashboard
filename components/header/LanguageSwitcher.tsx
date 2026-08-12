@@ -87,29 +87,40 @@ export default function LanguageSwitcher() {
                 />
             </button>
 
-            {open && (
-                <div
-                    className="
-                        absolute
-                        right-0
-                        mt-3
+<div
+    className={`
+        absolute
+        right-0
+        mt-6
 
-                        w-52
+        w-52
 
-                        rounded-2xl
+        rounded-2xl
 
-                        bg-card
+        bg-card
 
-                        border
-                        border-border
+        border
+        border-border
 
-                        shadow-xl
+        shadow-xl
 
-                        overflow-hidden
+        overflow-hidden
 
-                        z-50
-                    "
-                >
+        z-50
+
+        origin-top-right
+
+        transition-all
+        duration-200
+        ease-out
+
+        ${
+            open
+                ? "opacity-100 scale-100 translate-y-0 visible pointer-events-auto"
+                : "opacity-0 scale-95 -translate-y-2 invisible pointer-events-none"
+        }
+    `}
+>
                     {languages.map((language) => (
                         <button
                             key={language.code}
@@ -150,7 +161,6 @@ export default function LanguageSwitcher() {
                         </button>
                     ))}
                 </div>
-            )}
         </div>
     );
 }
