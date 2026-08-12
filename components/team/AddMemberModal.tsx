@@ -39,7 +39,11 @@ export default function AddMemberModal({
         setPreview(imageUrl);
     };
 
-    const handleSave = () => {
+    const handleSubmit = (
+        e: React.FormEvent<HTMLFormElement>
+    ) => {
+        e.preventDefault();
+
         if (
             !name.trim() ||
             !role.trim() ||
@@ -64,10 +68,16 @@ export default function AddMemberModal({
         setPreview("/images/img-resume.jpg");
     };
 
+    const isFormValid =
+        name.trim() &&
+        role.trim() &&
+        email.trim();
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
 
-            <div
+            <form
+                onSubmit={handleSubmit}
                 className="
                     relative
                     w-full
@@ -84,6 +94,7 @@ export default function AddMemberModal({
                 {/* Close */}
 
                 <button
+                    type="button"
                     onClick={onClose}
                     className="
                         absolute
@@ -97,6 +108,8 @@ export default function AddMemberModal({
                 >
                     <IoClose size={24} />
                 </button>
+
+                {/* Header */}
 
                 <h2 className="text-2xl font-bold">
                     Add New Member
@@ -150,6 +163,7 @@ export default function AddMemberModal({
                             setName(e.target.value)
                         }
                         placeholder="Full Name"
+                        required
                         className="
                             h-12
                             w-full
@@ -169,6 +183,7 @@ export default function AddMemberModal({
                             setRole(e.target.value)
                         }
                         placeholder="Role"
+                        required
                         className="
                             h-12
                             w-full
@@ -189,6 +204,7 @@ export default function AddMemberModal({
                             setEmail(e.target.value)
                         }
                         placeholder="Email"
+                        required
                         className="
                             h-12
                             w-full
@@ -209,27 +225,27 @@ export default function AddMemberModal({
                 <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
 
                     <button
+                        type="button"
                         onClick={onClose}
                         className="
                             h-11
+                            w-full
                             rounded-xl
                             border
                             border-border
                             px-6
+                            sm:w-auto
                         "
                     >
                         Cancel
                     </button>
 
                     <button
-                        onClick={handleSave}
-                        disabled={
-                            !name.trim() ||
-                            !role.trim() ||
-                            !email.trim()
-                        }
+                        type="submit"
+                        disabled={!isFormValid}
                         className="
                             h-11
+                            w-full
                             rounded-xl
                             bg-primary
                             px-6
@@ -239,6 +255,7 @@ export default function AddMemberModal({
                             hover:opacity-90
                             disabled:cursor-not-allowed
                             disabled:opacity-50
+                            sm:w-auto
                         "
                     >
                         Save Member
@@ -246,7 +263,7 @@ export default function AddMemberModal({
 
                 </div>
 
-            </div>
+            </form>
 
         </div>
     );
