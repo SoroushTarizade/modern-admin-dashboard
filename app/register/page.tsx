@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import {useState} from "react" ;
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import AuthBackground from "@/components/auth/AuthBackground";
 import AuthCard from "@/components/auth/AuthCard";
 import AuthInput from "@/components/auth/AuthInput";
@@ -11,76 +12,155 @@ import AuthButton from "@/components/auth/AuthButton";
 
 export default function RegisterPage() {
     const router = useRouter();
+
     const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
     });
 
-        const [message, setMessage] = useState("");
-        const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-        const handleChange = (
+    const handleChange = (
         event: React.ChangeEvent<HTMLInputElement>
-            ) => {
+    ) => {
         const { name, value } = event.target;
 
         setFormData((prev) => ({
             ...prev,
             [name]: value,
-         }));
+        }));
+
+        // Clear previous error when user edits the form
+        if (error) {
+            setError("");
+        }
     };
 
     const handleSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-) => {
-    event.preventDefault();
+        event: React.FormEvent<HTMLFormElement>
+    ) => {
+        event.preventDefault();
 
-    setMessage("");
-    setLoading(true);
+        setError("");
 
-    try {
-        const response = await fetch("/api/users", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formData),
-        });
+        const username = formData.username.trim();
+        const email = formData.email.trim().toLowerCase();
+        const password = formData.password;
+        const confirmPassword = formData.confirmPassword;
 
-        const data = await response.json();
-
-        if (!response.ok) {
-            setMessage(data.message);
+        // Username validation
+        if (!username) {
+            setError("Username is required.");
             return;
         }
-        router.push("/");
-        router.refresh();
-    } catch (error) {
-        console.error("Register error:", error);
-        setMessage("Something went wrong. Please try again.");
-    } finally {
-        setLoading(false);
-    }
-};
+
+        if (username.length < 3) {
+            setError(
+                "Username must be at least 3 characters."
+            );
+            return;
+        }
+
+        // Email validation
+        if (!email) {
+            setError("Email is required.");
+            return;
+        }
+
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+
+        // Password validation
+        if (!password) {
+            setError("Password is required.");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError(
+                "Password must be at least 6 characters."
+            );
+            return;
+        }
+
+        // Confirm password validation
+        if (!confirmPassword) {
+            setError("Please confirm your password.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            setError("Passwords do not match.");
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const response = await fetch(
+                "/api/auth/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                        confirmPassword,
+                    }),
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                setError(
+                    data.message ||
+                    "Unable to create your account."
+                );
+                return;
+            }
+
+            router.push("/");
+            router.refresh();
+
+        } catch (error) {
+            console.error(
+                "Register error:",
+                error
+            );
+
+            setError(
+                "Something went wrong. Please try again."
+            );
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <AuthBackground>
-
             <AuthCard
                 title="Create Account"
                 subtitle="Create your account to get started."
             >
-
                 <form
                     onSubmit={handleSubmit}
                     className="
                         space-y-5
-
                         sm:space-y-6
                     "
                 >
-
                     <AuthInput
                         label="Username"
                         id="username"
@@ -90,7 +170,6 @@ export default function RegisterPage() {
                         value={formData.username}
                         onChange={handleChange}
                     />
-
 
                     <AuthInput
                         label="Email Address"
@@ -103,17 +182,15 @@ export default function RegisterPage() {
                         onChange={handleChange}
                     />
 
-
                     <PasswordInput
                         label="Password"
                         id="password"
                         name="password"
                         autoComplete="new-password"
                         placeholder="Create a password"
-    value={formData.password}
-    onChange={handleChange}
+                        value={formData.password}
+                        onChange={handleChange}
                     />
-
 
                     <PasswordInput
                         label="Confirm Password"
@@ -121,20 +198,25 @@ export default function RegisterPage() {
                         name="confirmPassword"
                         autoComplete="new-password"
                         placeholder="Confirm your password"
-                            value={formData.confirmPassword}
-    onChange={handleChange}
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
                     />
 
-{message && (
-    <p className="text-center text-sm">
-        {message}
-    </p>
-)}
+                    {error && (
+                        <p
+                            className="
+                                text-center
+                                text-sm
+                                text-red-500
+                            "
+                        >
+                            {error}
+                        </p>
+                    )}
 
-<AuthButton>
-    {loading ? "Creating Account..." : "Create Account"}
-</AuthButton>
-
+                    <AuthButton loading={loading}>
+                        Create Account
+                    </AuthButton>
 
                     <p
                         className="
@@ -143,7 +225,6 @@ export default function RegisterPage() {
                             text-muted-foreground
                         "
                     >
-
                         Already have an account?
 
                         <Link
@@ -157,14 +238,9 @@ export default function RegisterPage() {
                         >
                             Login
                         </Link>
-
                     </p>
-
-
                 </form>
-
             </AuthCard>
-
         </AuthBackground>
     );
 }

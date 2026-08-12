@@ -168,8 +168,8 @@ export default function LoginPage() {
                         </p>
                     )}
 
-                    <AuthButton>
-                        {loading ? "Signing In..." : "Sign In"}
+                    <AuthButton loading={loading}>
+                        Sign In
                     </AuthButton>
 
                     <p
