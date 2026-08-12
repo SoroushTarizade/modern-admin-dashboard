@@ -24,6 +24,35 @@ The goal of this project was to build a realistic administrative dashboard while
 💻 **Source Code:** https://github.com/SoroushTarizade/modern-admin-dashboard
 
 ---
+## 📸 Preview
+
+### Dashboard — Light Mode
+
+![Dashboard Light](./assets/screenshots/HomePage-light.png)
+
+### Dashboard — Dark Mode
+
+![Dashboard Dark](./assets/screenshots/HomePage-dark.png)
+
+### Inbox — Light Mode
+
+![Inbox Light](./assets/screenshots/InboxPage-light.png)
+
+### Inbox — Dark Mode
+
+![Inbox Dark](./assets/screenshots/InboxPage-dark.png)
+
+### Register
+
+![Register](./assets/screenshots/RegisterPage.png)
+
+### Sign In
+
+![Sign In](./assets/screenshots/signInPage.png)
+
+### 404 Page
+
+![404](./assets/screenshots/Eror404.png)
 
 ## ✨ Features
 
