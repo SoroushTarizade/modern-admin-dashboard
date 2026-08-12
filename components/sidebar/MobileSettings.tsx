@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
 FiSettings,
 FiHelpCircle,
@@ -27,19 +28,17 @@ return (
                 w-full
                 h-12
                 px-4
-
                 flex
                 items-center
                 gap-3
-
                 hover:bg-secondary
-
                 transition-all
             "
         >
             <FiSettings />
-
+            <Link href='/settings'>
             Settings
+            </Link>
         </button>
 
 
@@ -60,8 +59,9 @@ return (
             "
         >
             <FiHelpCircle />
-
+            <Link href='/help-center'>
             Help Center
+            </Link>
         </button>
 
 
