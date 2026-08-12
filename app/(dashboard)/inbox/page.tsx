@@ -40,7 +40,7 @@ export default function InboxPage() {
 
 
     const handleOpenMail = (item: any) => {
-
+        
         console.log("OPEN MAIL:", item);
 
         mail.setActiveMail(item);

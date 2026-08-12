@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 import LogoutButton from "@/components/auth/LogoutButton";
 
 import {
@@ -55,34 +55,33 @@ export default function UserMenu({
             );
     }, []);
 
-    const menuItems = [
-        {
-            title: "My Profile",
-            icon: <FiUser size={18} />,
-            href: "/profile",
-        },
-        {
-            title: "Settings",
-            icon: <FiSettings size={18} />,
-            href: "/settings",
-        },
-        {
-            title: "Billing",
-            icon: <FiCreditCard size={18} />,
-            href: null,
-        },
-        {
-            title: "Activity Log",
-            icon: <FiActivity size={18} />,
-            href: null,
-        },
-        {
-            title: "Help Center",
-            icon: <FiHelpCircle size={18} />,
-            href: null,
-        },
-    ];
-
+const menuItems = [
+    {
+        title: "My Profile",
+        icon: <FiUser size={18} />,
+        href: "/profile",
+    },
+    {
+        title: "Settings",
+        icon: <FiSettings size={18} />,
+        href: "/settings",
+    },
+    {
+        title: "Billing",
+        icon: <FiCreditCard size={18} />,
+        href: "/billing",
+    },
+    {
+        title: "Activity Log",
+        icon: <FiActivity size={18} />,
+        href: "/activity-log",
+    },
+    {
+        title: "Help Center",
+        icon: <FiHelpCircle size={18} />,
+        href: "/help-center",
+    },
+];
     function handleNavigation(href: string | null) {
         if (!href) return;
 
@@ -168,46 +167,31 @@ export default function UserMenu({
 
                     {/* Menu Items */}
                     <div className="py-2">
-                        {menuItems.map((item) => (
-                            <button
-                                key={item.title}
-                                type="button"
-                                disabled={!item.href}
-                                onClick={() =>
-                                    handleNavigation(item.href)
-                                }
-                                className={`
-                                    flex
-                                    items-center
-                                    gap-4
-                                    w-full
-                                    px-5
-                                    py-3
-                                    text-left
-                                    transition-all
-                                    ${
-                                        item.href
-                                            ? `
-                                                hover:bg-secondary
-                                                cursor-pointer
-                                            `
-                                            : `
-                                                opacity-50
-                                                cursor-not-allowed
-                                            `
-                                    }
-                                `}
-                                role="menuitem"
-                            >
-                                <span className="text-primary">
-                                    {item.icon}
-                                </span>
+{menuItems.map((item) => (
+    <Link
+        key={item.title}
+        href={item.href}
+        onClick={() => setOpen(false)}
+        className="
+            flex
+            items-center
+            gap-4
+            w-full
+            px-5
+            py-3
+            hover:bg-secondary
+            transition-all
+        "
+    >
+        <span className="text-primary">
+            {item.icon}
+        </span>
 
-                                <span className="font-medium">
-                                    {item.title}
-                                </span>
-                            </button>
-                        ))}
+        <span className="font-medium">
+            {item.title}
+        </span>
+    </Link>
+))}
                     </div>
 
                     {/* Logout */}
