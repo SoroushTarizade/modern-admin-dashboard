@@ -19,7 +19,7 @@ The goal of this project was to build a realistic administrative dashboard while
 
 ## 🌐 Live Demo
 
-🔗 **Demo:** https://modern-admin-dashboard-g2yl.onrender.com/
+🔗 **Demo:** https://modern-admin-dashboard-one.vercel.app/
 
 💻 **Source Code:** https://github.com/SoroushTarizade/modern-admin-dashboard
 
